@@ -1,12 +1,11 @@
 import React from "react";
-
+import DetailBody from "../components/DetailBody";
 const Detail = (props) => {
 
     return (
         <React.Fragment>
-            DetailBody
-            NameCard
-            CommentBody
+            <DetailBody>
+            </DetailBody>
         </React.Fragment>
     );
 }
