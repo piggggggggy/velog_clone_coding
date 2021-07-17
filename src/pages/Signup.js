@@ -66,7 +66,7 @@ const InlineBox = styled.div`
     max-width: 100%;
 `;
 
-const InputBox = styled.input`
+const InputBox = styled.div`
     padding-bottom: 8px;
     border-bottom: 1px solid black;
     display: flex;

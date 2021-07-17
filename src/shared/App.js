@@ -18,7 +18,7 @@ const App = () => {
         <Route path="/signup" exact component={Signup} />
         <Route path="/Write" exact component={Write} />
         <Route path="/Write/:pId" exact component={Write} />
-        <Route path="/Setting/:mId" exact component={Setting} />
+        <Route path="/Setting" exact component={Setting} />
       </BrowserRouter>
     </div>
   );
