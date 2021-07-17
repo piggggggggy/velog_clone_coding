@@ -39,8 +39,42 @@ const MainBody = (props) => {
               </svg>
               최신
             </a>
-            {/* 최신 시작 */}
+            {/* 최신 끝 */}
+            <CheckBox>
+              이번 주
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                height="1.8em"
+                width="1.8em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M7 10l5 5 5-5z"></path>
+              </svg>
+            </CheckBox>
+            {/* 하단 표시선 시작*/}
+            <UnderLine></UnderLine>
           </Changing>
+          <MoreBox>
+            <a>
+              <svg
+                stroke="currentColor"
+                flill="currentColor"
+                strokeWidth="0"
+                viewBox="0 0 24 24"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+                  fill="rgb(134, 142, 150)"
+                ></path>
+              </svg>
+            </a>
+          </MoreBox>
         </NavBox>
         <CardContainer>
           <MainCard />
@@ -79,6 +113,32 @@ const NavBox = styled.div`
   margin: auto;
 `;
 
+const CheckBox = styled.div`
+  background: white;
+  width: 8rem;
+  height: 2.8rem;
+  border-radius: 4px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-weight: 600;
+  color: rgb(73, 80, 87);
+  box-shadow: rgb(0 0 0 / 5%) 0px 0px 4px;
+  cursor: pointer;
+`;
+
+const UnderLine = styled.div`
+  width: 40%;
+  height: 3px;
+  position: absolute;
+  bottom: 0px;
+  background-color: rgb(52, 58, 64);
+`;
+
 const Changing = styled.div`
   display: flex;
   -webkit-box-align: center;
@@ -86,6 +146,7 @@ const Changing = styled.div`
   position: relative;
   /* box-sizing: inherit; */
   font-weight: 400;
+  /* padding: 3px; */
   & > a {
     display: flex;
     -webkit-box-align: center;
@@ -97,16 +158,38 @@ const Changing = styled.div`
     color: rgb(134, 142, 150);
     text-decoration: none;
     padding: 20px;
-    :link {
-      color: rgb(134, 142, 150);
+    :active {
+      color: black;
     }
+  }
+`;
+
+const MoreBox = styled.div`
+  margin-right: 10px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  & > a {
+    margin-top: 10px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-obx-pack: center;
+    justify-content: center;
+    font-size: 35px;
+    height: 3rem;
+    color: rgb(134, 142, 150);
+    text-decoration: none;
+    cursor: pointer;
   }
 `;
 
 const MainContainer = styled.div`
   max-width: 100%;
   height: auto;
-  background-color: #f4f4f4;
+  background-color: rgb(248, 249, 250);
   display: block;
 `;
 
