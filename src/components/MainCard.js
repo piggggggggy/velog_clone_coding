@@ -48,8 +48,8 @@ const MainCard = (props) => {
 };
 
 const CardWrap = styled.div`
-  margin: 2%;
-  width: 40%;
+  margin: 1%;
+  width: 37rem;
   height: 100%;
   box-sizing: border-box;
   border-radius: 10px;
@@ -96,6 +96,7 @@ const UserInfoBox = styled.div`
   padding: 5%;
   -webkit-box-pack: justify;
   justify-content: space-between;
+
   & > div {
     & > img {
       width: 1.5rem;
