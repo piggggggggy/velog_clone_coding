@@ -8,7 +8,7 @@ const Signup = (props) => {
         <React.Fragment>
             <Container>
                 <h1>환영합니다!</h1>
-                <>기본 회원 정보를 등록해주세요.</>
+                <SignupExplain>기본 회원 정보를 등록해주세요.</SignupExplain>
                 <div>
                     <Label>이름</Label>
                     <InlineBox>
@@ -51,7 +51,25 @@ const Signup = (props) => {
 }
 
 const Container = styled.div`
-    margin: 100px 673px;
+    width: 36%;
+    min-width: 768px;
+    margin: 100px auto 0px;
+    line-height: 1.5;
+    color: #212529;
+
+    & > h1 {
+        font-size: 4rem;
+        color: #212529;
+        font-weight: bolder;
+        margin: 0px;
+        line-height: 1.5;
+    }
+`;
+
+const SignupExplain = styled.div`
+    font-size: 1.5rem;
+    color: #212529;
+    line-height: 1.5;
 `;
 
 const Label = styled.label`

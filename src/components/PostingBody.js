@@ -12,9 +12,9 @@ const PostingBody = (props) => {
                 <NavigationBar>
                     <div>
                         <a>글</a>
-                        <a>시리즈</a>
+                        <a style={{ color: "#20c997" }}>시리즈</a>
                         <a>소개</a>
-                        <div></div>
+                        <div style={{ left: "33.3333%" }}></div>
                     </div>
                 </NavigationBar>
             </PostingContainer>
@@ -25,6 +25,8 @@ const PostingBody = (props) => {
 const PostingContainer = styled.div`
     width: 36%;
     min-width: 768px;
+    margin-left: auto;
+    margin-right: auto;
 `;
 
 const NavigationBar = styled.div`
@@ -60,7 +62,7 @@ const NavigationBar = styled.div`
             height: 2px;
             background: #20c997;
             position: absolute;
-            bottom: --2px;
+            bottom: -2px;
             transition: left 0.25s ease-in-out 0s;
 
         }
