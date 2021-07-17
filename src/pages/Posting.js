@@ -6,7 +6,7 @@ const Posting = (props) => {
     return (
         <React.Fragment>
             <NameCard/>
-            PostingBody
+            <Posting/>
         </React.Fragment>
     );
 }
