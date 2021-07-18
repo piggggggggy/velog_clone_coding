@@ -187,7 +187,7 @@ const ListBox = styled.div`
 const PostBox = styled.div`
   padding-right: 1rem;
   padding-left: 1rem;
-  width: 768px;
+  width: 60%;
   margin: 5rem auto 0px;
 `;
 
