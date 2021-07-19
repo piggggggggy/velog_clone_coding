@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom";
+import { Route, BrowserRouter } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configStore";
 import GlobalStyles from "./GlobalStyles";
@@ -13,7 +13,7 @@ const App = () => {
   return (
     <div className="App">
       <GlobalStyles/>
-      <ConnectedRouter history={history}>
+      <BrowserRouter history={history}>
         <Route path="/" exact component={Main} />
         <Route path="/posting" exact component={Posting} />
         <Route path="/posting/:pId" exact component={Detail} />
@@ -21,7 +21,7 @@ const App = () => {
         <Route path="/Write" exact component={Write} />
         <Route path="/Write/:pId" exact component={Write} />
         <Route path="/Setting" exact component={Setting} />
-      </ConnectedRouter>
+      </BrowserRouter>
     </div>
   );
 };
