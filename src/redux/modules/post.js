@@ -81,7 +81,7 @@ const setPostDB = () => {
 
 // 게시물 삭제
 const deletePostDB = (pId) => {
-  async (dspatch, getState, { history }) => {
+  async (dispatch, getState, { history }) => {
     await api
       .delete(`/api/posting/${pId}`)
       .then((res) => {
