@@ -7,7 +7,7 @@ const Posting = (props) => {
 
     return (
         <React.Fragment>
-            <SharedHeader></SharedHeader>
+            <SharedHeader/>
             <PostingBody/>
         </React.Fragment>
     );

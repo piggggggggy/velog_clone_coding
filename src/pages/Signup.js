@@ -1,8 +1,39 @@
-import { stubArray } from "lodash";
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { useRef } from "react";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const Signup = (props) => {
+    const dispatch = useDispatch();
+    const {history} = props;
+
+    const mName = useRef();
+    const email = useRef();
+    const pwd = useRef();
+    const pwdCheck = useRef();
+
+    const signUp = () => {
+        let data = {
+            mName: mName.current.value,
+            email: email.current.value,
+            pwd: pwd.current.value,
+            pwdCheck: pwdCheck.current.value,
+        };
+        if (mName.current.value === "") {
+            is_wrong = true;
+            alertText = "이름을 입력해주세요.";
+        } else if (email.current.value === "") {
+            is_wrong = true;
+            alertText = "아이디는 3~16자의 알파벳,숫자,혹은 - _ 으로 이루어져야 합니다.";
+        } else if (pwd.current.value === "")
+        dispatch(userActions.registerDB(data));
+        history.pushState('/');
+    };
+
+    let is_wrong = false;
+    let alertText = ""
+
 
     return (
         <React.Fragment>
@@ -16,7 +47,7 @@ const Signup = (props) => {
                             <label>이름</label>
                             <div>
                                 <InputContent>
-                                    <input placeholder="이름을 입력하세요" size="20"/>
+                                    <input ref={mName} placeholder="이름을 입력하세요" size="20"/>
                                 </InputContent>
                                 <WidthMaker></WidthMaker>
                             </div>    
@@ -26,13 +57,13 @@ const Signup = (props) => {
                             <label>아이디</label>
                             <div>
                                 <InputContent>
-                                    <input placeholder="아이디를 입력하세요" size="15"/>
+                                    <input ref={email} placeholder="아이디를 입력하세요" size="15"/>
                                 </InputContent>
                                 <WidthMaker></WidthMaker>
                             </div>    
                         </PartContent>
 
-                        <PartContent>
+                        {/* <PartContent>
                             <label>한 줄 소개</label>
                             <div>
                                 <InputContent>
@@ -40,10 +71,31 @@ const Signup = (props) => {
                                 </InputContent>
                                 <WidthMaker></WidthMaker>
                             </div>    
+                        </PartContent> */}
+
+                        <PartContent>
+                            <label>비밀번호</label>
+                            <div>
+                                <InputContent>
+                                    <input ref={pwd} type="password" placeholder="비밀번호를 입력하세요" size="25"/>
+                                </InputContent>
+                                <WidthMaker></WidthMaker>
+                            </div>    
+                        </PartContent>
+
+                        <PartContent>
+                            <label>비밀번호 확인</label>
+                            <div>
+                                <InputContent>
+                                    <input ref={pwdCheck} type="password" placeholder="비밀번호를 다시 입력하세요" size="30"/>
+                                </InputContent>
+                                <WidthMaker></WidthMaker>
+                            </div>    
                         </PartContent>
 
                         <ButtonContent>
                             <div>
+                                {is_wrong? <AlertText>alertText</AlertText>:''}
                                 <Button style={{ background: "#e9ecef", color: "#495057" }}>취소</Button>
                                 <Button style={{ background: "#12b886", color: "#ffffff", marginLeft: "1rem" }}>다음</Button>
                             </div>
@@ -166,6 +218,14 @@ const Button = styled.button`
     word-break: keep-all;
     transition: all 0.125s ease-in 0s;
     cursor: pointer;
+`;
+
+const AlertText = styled.div`
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+    line-height: 1.5;
+    color: #ff6b6b;
+    font-weight: bold;
 `;
 
 export default Signup;

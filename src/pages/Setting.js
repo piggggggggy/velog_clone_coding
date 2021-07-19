@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import SharedHeader from "../shared/SharedHeader";
 
 const Setting = (props) => {
 
     return (
         <React.Fragment>
+            <SharedHeader/>
             <SettingContainer>
-
                 <SectionHead>
                     <ImageArea>
                         <img src="https://media.vlpt.us/images/pyt4105/profile/0d998bb2-e2ce-430a-8434-c28369fc5009/타인의삶.png?w=400"/>

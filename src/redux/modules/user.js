@@ -2,6 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 // import { getCookie } from "../../shared/api"
 import api from "../../shared/api";
+import { deleteCookie, setCookie } from "../../shared/Cookie";
 
 
 // actions
@@ -34,14 +35,16 @@ const logInDB = (email, pwd) =>
                 pwd: pwd
             })
             .then((res) => {
-                console.log(res);
-
+                // console.log(res);
                 dispatch(
-                    setUser({
-                        
+                    setUser({ // 연결하고 확인
+                        mName: res.data.mName,
+                        email: res.data.email,
+                        mId: res.data.mId,
                     })
-                )
-
+                );
+                const USER_TOKEN = res.data.token; // 연결하고 확인
+                setCookie('token', res.data.token, 1);
                 history.replace('/')
             }).catch((err) => {
                 console.log("에러났음", err);
@@ -89,6 +92,7 @@ export default handleActions(
 
         [LOG_OUT]: (state, action) => 
         produce(state, (draft) => {
+            deleteCookie('token');
             draft.user = {};
             draft.is_login = false;
         }),
