@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import NameCard from "./NameCard";
+import PostingCard from "./PostingCard";
 
 const PostingBody = (props) => {
 
@@ -189,15 +190,13 @@ const PostingBody = (props) => {
                             </a>
 
                         </div>
-
-
-                        <div>
-
-                        </div>
                     </TagList>
-
+                    <CardList>
+                        <div>
+                            <PostingCard/>
+                        </div>
+                    </CardList>
                 </div>
-
             </PostingContainer>
         </React.Fragment>
     );
@@ -364,6 +363,14 @@ const TagList = styled.div`
                 }
             }
         }
+    }
+`;
+
+const CardList = styled.div`
+    color: #212529;
+
+    & > div {
+        color: #212529;
     }
 `;
 
