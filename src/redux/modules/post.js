@@ -11,11 +11,16 @@ const DETAIL_POST = "post/DETIL_POST";
 
 // action creators
 
-const setPost = createAction(SET_POST, (post_list) => ({post_list}));
+const setPost = createAction(SET_POST, (post_list) => ({
+  post_list,
+}));
 const addPost = createAction(ADD_POST, (post) => ({ post }));
-const editPost = createAction(EDIT_POST, (pId, post) => ({pId, post}));
+const editPost = createAction(EDIT_POST, (pId, post) => ({
+  pId,
+  post,
+}));
 const deletePost = createAction(DELETE_POST, (pId) => ({ pId }));
-const detailPost = createAction(DETAIL_POST, (post, pId) => ({post, pId}));
+const detailPost = createAction(DETAIL_POST, (post, pId));
 
 //initialState
 const initialState = {
@@ -34,7 +39,7 @@ const initialPost = {
 };
 
 // 게시물 생성
-const addPostDB = (post) => 
+const addPostDB = (post) => {
   async (dispatch, getState, { history }) => {
     await api
       .post("/api/posting/write", {
@@ -54,9 +59,10 @@ const addPostDB = (post) =>
         console.log(err);
       });
   };
+};
 
 // 전체 게시물 조회
-const setPostDB = () => 
+const setPostDB = () => {
   async (dispatch, getState, { history }) => {
     await api
       .get("/api/recent")
@@ -71,10 +77,10 @@ const setPostDB = () =>
         console.log(err);
       });
   };
-
+};
 
 // 게시물 삭제
-const deletePostDB = (pId) => 
+const deletePostDB = (pId) => {
   async (dispatch, getState, { history }) => {
     await api
       .delete(`/api/posting/${pId}`)
@@ -89,10 +95,10 @@ const deletePostDB = (pId) =>
         console.log(err);
       });
   };
-
+};
 
 // 게시물 수정
-const editPostDB = (pId = null, edit = {}) => 
+const editPostDB = (pId = null, edit = {}) => {
   async (dispatch, getState, { history }) => {
     await api
       .put(`/api/posting/${pId}`, {
@@ -112,10 +118,10 @@ const editPostDB = (pId = null, edit = {}) =>
         console.log(err);
       });
   };
-
+};
 
 // 상세 게시물 조회
-const detailPostDB = (pId = "") => 
+const detailPostDB = (pId = "") => {
   async (dispatch, getState, { history }) => {
     await api.get(`/api/posting/detail/${pId}`).then((res) => {
       console.log(res);
@@ -124,7 +130,7 @@ const detailPostDB = (pId = "") =>
       dispatch(detailPost(post));
     });
   };
-
+};
 
 // reducer
 export default handleActons(
@@ -141,18 +147,18 @@ export default handleActons(
 
     [DELETE_POST]: (state, action) =>
       produce(state, (draft) => {
-        // if (p.pId !== action.payload.pId) {
-        //   return p;
-        // }
-        // return { list: del_list };
+        if (p.pId !== action.payload.pId) {
+          return p;
+        }
+        return { list: del_list };
       }),
-    [DETAIL_POST]: (state, action) =>
+    [DETAIL_POST]: (state, aciton) =>
       produce(state, (draft) => {
         // 수정 필요함
         draft.post = action.payload.pId;
         // 수정 필요함
       }),
-    [EDIT_POST]: (state, action) =>
+    [EDIT_POST]: (state, aciton) =>
       produce(state, (draft) => {
         let idx = draft.list.findIndex((p) => p.pId === action.payload.pId);
         draft.list[idx] = { ...draft.list[idx], ...action.payload.new_post };
