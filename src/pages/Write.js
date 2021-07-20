@@ -2,8 +2,13 @@ import React, { useRef } from "react";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/react-editor";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+// import { actionCreators as postActions } from "../redux/modules/post";
+
 
 const Write = (props) => {
+  const uId = props.match.params.pId;
+  const dispatch = useDispatch();
   const editorRef = useRef();
   const _title = React.useRef();
   const submit = () => {
@@ -13,7 +18,7 @@ const Write = (props) => {
 
     const post = {
       title: _title.current.value,
-      contents: contentsMd.replaceAll("#", ""),
+      content: contentsMd.replaceAll("#", ""),
       contentsHtml,
       contentsMd,
       image,
@@ -58,6 +63,9 @@ const Write = (props) => {
           <PostingButton onClick={submit}>출간하기</PostingButton>
         </PostingButtonBox>
       </Footer>
+      {/* <textarea
+        dangerouslySetInnerHTML={{ __html: post.contentsHtml }}
+      ></textarea> */}
     </React.Fragment>
   );
 };
