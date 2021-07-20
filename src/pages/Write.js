@@ -40,7 +40,7 @@ const Write = (props) => {
           ref={editorRef}
           initialValue=""
           previewStyle="vertical"
-          height="100vh"
+          height="82vh"
           initialEditType="markdown"
           previewHighlight={false}
           placeholder="당신의 이야기를 적어보세요..."
