@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { history } from "../redux/configStore";
-import { useParams } from "react-router";
+// import { useParams } from "react-router";
 import LoginModal from "../components/LoginModal";
 // import { history } from "../redux/configStore";
 

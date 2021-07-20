@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 // import { actionCreators as postActions } from "../redux/modules/post";
 
 
+import PostingModal from "./PostingModal";
+
 const Write = (props) => {
   const uId = props.match.params.pId;
   const dispatch = useDispatch();
@@ -27,8 +29,18 @@ const Write = (props) => {
     console.log(contentsHtml.split('"')[1]);
   };
 
+  const [modal, setModal] = React.useState(false);
+    const onModal = () => {
+        setModal(true);
+    };
+    const offModal = () => {
+        setModal(false);
+    }
+
+
   return (
     <React.Fragment>
+      <PostingModal Open={modal} Close={offModal}/>
       <PostContainer>
         <WriteHeadrContainer>
           <input
@@ -60,7 +72,7 @@ const Write = (props) => {
         </Exit>
         <PostingButtonBox>
           <TemporaryButton>임시저장</TemporaryButton>
-          <PostingButton onClick={submit}>출간하기</PostingButton>
+          <PostingButton onClick={onModal}>출간하기</PostingButton>
         </PostingButtonBox>
       </Footer>
       {/* <textarea
