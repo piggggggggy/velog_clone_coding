@@ -1,4 +1,4 @@
-import { createAction, handleActons } from "redux-actions";
+import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import api from "../../shared/api";
 
@@ -132,7 +132,7 @@ const detailPostDB = (pId = "") =>
 
 
 // reducer
-export default handleActons(
+export default handleActions(
   {
     [SET_POST]: (state, action) =>
       produce(state, (draft) => {

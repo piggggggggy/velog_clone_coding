@@ -38,7 +38,7 @@ const initialComment = {
 
 // thunk
 // 전체 댓글 조회
-const setCommentDB = (pId) => {
+const setCommentDB = (pId) => 
   async (dispatch, getState, { history }) => {
     await api
       .get(`/api/comment/${pId}`)
@@ -51,10 +51,9 @@ const setCommentDB = (pId) => {
         console.log(err);
       });
   };
-};
 
 // 댓글 생성
-const addCommentDB = (comment) => {
+const addCommentDB = (pId, comment) => 
   async (dispatch, getState, { history }) => {
     await api
       .post(`/api/comment/${pId}`, comment)
@@ -68,10 +67,10 @@ const addCommentDB = (comment) => {
         console.log(err);
       });
   };
-};
+
 
 // 댓글 삭제
-const deleteCmtDB = (cId) => {
+const deleteCmtDB = (cId) => 
   async (dispatch, getState, { history }) => {
     await api
       .delete(`/api/comment/${cId}`)
@@ -85,32 +84,32 @@ const deleteCmtDB = (cId) => {
         console.log(err);
       });
   };
-};
+
 
 // 수정 필요
 // 댓글 수정
-const editCmtDB = (cId, comment) => {
+const editCmtDB = (cId, comment) => 
   async (dispatch, getState, { history }) => {
     await api
       .put(`/api/comment/${cId}`, comment)
       .then((res) => {
-        dispatch(editCmt(id, res.comment));
+        dispatch(editCmt(cId, res.comment));
       })
       .catch((err) => {
         window.alert("댓글 수정에 오류가 있어요!");
         console.log(err);
       });
   };
-};
+
 
 // reducer
 export default handleActions(
   {
-    [SET_CMT]: (state, aciton) =>
+    [SET_CMT]: (state, action) =>
       produce(state, (draft) => {
         draft.comments = action.payload.comment_list;
       }),
-    [ADD_CMT]: (state, aciton) =>
+    [ADD_CMT]: (state, action) =>
       produce(state, (draft) => {
         draft.comments.unshift(action.payload.comment_list);
       }),
