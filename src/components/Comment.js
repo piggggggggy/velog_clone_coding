@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as commentAciton } from "../redux/modules/comment";
 const Comment = (props) => {
+  const comments = useSelector((state) => state.comment.comments);
+  const pId = props.pId;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(commentAciton.setCmtDB(pId));
+  }, []);
+
   return (
     <React.Fragment>
       <CommentsContainer>
@@ -53,9 +62,9 @@ const CommentsContainer = styled.div`
 `;
 
 const CommentContetsBox = styled.div`
-    width: 59%;
-    margin: auto;
-    border-bottom: 1px solid rgb(233, 236, 239);
+  width: 59%;
+  margin: auto;
+  border-bottom: 1px solid rgb(233, 236, 239);
 `;
 
 const CommentBox = styled.div`
