@@ -8,11 +8,12 @@ import Detail from "../pages/Detail";
 import Signup from "../pages/Signup";
 import Write from "../pages/Write";
 import Setting from "../pages/Setting";
+import PostingModal from "../pages/PostingModal";
 
 const App = () => {
   return (
     <div className="App">
-      <GlobalStyles/>
+      <GlobalStyles />
       <BrowserRouter history={history}>
         <Route path="/" exact component={Main} />
         <Route path="/posting" exact component={Posting} />
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/Write" exact component={Write} />
         <Route path="/Write/:pId" exact component={Write} />
         <Route path="/Setting" exact component={Setting} />
+        <Route path="/postingmodal" exact component={PostingModal} />
       </BrowserRouter>
     </div>
   );
