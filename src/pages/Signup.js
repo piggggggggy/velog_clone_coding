@@ -96,7 +96,7 @@ const Signup = (props) => {
                         <ButtonContent>
                             <div>
                                 {is_wrong? <AlertText>alertText</AlertText>:''}
-                                <Button style={{ background: "#e9ecef", color: "#495057" }}>취소</Button>
+                                <Button onClick={()=>{history.replace('/')}} style={{ background: "#e9ecef", color: "#495057" }}>취소</Button>
                                 <Button style={{ background: "#12b886", color: "#ffffff", marginLeft: "1rem" }}>다음</Button>
                             </div>
                         </ButtonContent>

@@ -51,7 +51,7 @@ const LoginModal = (props) => {
                                     
                                     <section style={{marginTop: "1rem"}}>
                                         <form>
-                                            <input ref={pwd} tabindex="2" placeholder="비밀번호를 입력하세요."></input>
+                                            <input ref={pwd} type="passWord" tabindex="2" placeholder="비밀번호를 입력하세요."></input>
                                             <button onClick={()=>{logIn()}} tabIndex="3">로그인</button>
                                         </form>
                                     </section>

@@ -7,7 +7,6 @@ import SharedHeader from "../shared/SharedHeader";
 const Detail = (props) => {
   return (
     <React.Fragment>
-      <SharedHeader/>
       <DetailBody />
       <CommentBody/>
       <Comment/>
