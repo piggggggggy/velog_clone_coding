@@ -1,52 +1,59 @@
-import React, { useRef } from "react";
+import React, { useRef, u } from "react";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/react-editor";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 // import { actionCreators as postActions } from "../redux/modules/post";
 
 
 import PostingModal from "./PostingModal";
 
 const Write = (props) => {
-  const uId = props.match.params.pId;
+  // const uId = props.match.params.pId;
   const dispatch = useDispatch();
+  const {history} = props;
   const editorRef = useRef();
-  const _title = React.useRef();
-  const submit = () => {
-    const contentsHtml = editorRef.current.getInstance().getHTML();
-    const contentsMd = editorRef.current.getInstance().getMarkdown();
-    const image = contentsHtml.split("=")[1]?.split('"')[1];
 
-    const post = {
-      title: _title.current.value,
-      content: contentsMd.replaceAll("#", ""),
-      contentsHtml,
-      contentsMd,
-      image,
-    };
-    console.log(post);
-    console.log(contentsHtml.split('"')[1]);
+  const contentsHtml = editorRef.current.getInstance().getHTML();
+  const [title, setTitle] = useState();
+  const [contentsMd, setMd] = useState();
+
+  const changeTitle = (e) => {
+    setTitle(e.target.value);
   };
 
-  const [modal, setModal] = React.useState(false);
-    const onModal = () => {
-        setModal(true);
-    };
-    const offModal = () => {
-        setModal(false);
-    }
+  const changeMd = (e) => {
+    setMd(e.target.value);
+  };
+  // const image = contentsHtml.split("=")[1]?.split('"')[1];
+  // const contentsMd = editorRef.current.getInstance().getMarkdown();
+
+  const post = {
+    title: title,
+    content: contentsHtml,
+    contentMd: contentsMd,
+    tags : {tagname:[]}
+  };
+  
+  const [modal, setModal] = useState(false);
+  const onModal = () => {
+      setModal(true);
+  };
+  const offModal = () => {
+      setModal(false);
+  }
 
 
   return (
     <React.Fragment>
-      <PostingModal Open={modal} Close={offModal}/>
+      <PostingModal Open={modal} Close={offModal} data={post}/>
       <PostContainer>
         <WriteHeadrContainer>
           <input
             type="text"
             placeholder="제목을 입력하세요"
-            ref={_title}
+            onChange={changeTitle}
           ></input>
           <UnderLine></UnderLine>
           <TagContainer>
@@ -55,6 +62,7 @@ const Write = (props) => {
         </WriteHeadrContainer>
         <Editor
           ref={editorRef}
+          onChange={changeMd}
           initialValue=""
           previewStyle="vertical"
           height="82vh"
@@ -68,7 +76,7 @@ const Write = (props) => {
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
           </svg>
-          <span>나가기</span>
+          <span onClick={history.goBack}>나가기</span>
         </Exit>
         <PostingButtonBox>
           <TemporaryButton>임시저장</TemporaryButton>

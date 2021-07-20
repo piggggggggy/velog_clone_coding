@@ -11,20 +11,18 @@ const DETAIL_POST = "post/DETIL_POST";
 
 // action creators
 
-const setPost = createAction(SET_POST, (post_list) => ({
-  post_list,
-}));
-const addPost = createAction(ADD_POST, (post) => ({ post }));
-const editPost = createAction(EDIT_POST, (pId, post) => ({
-  pId,
-  post,
-}));
-const deletePost = createAction(DELETE_POST, (pId) => ({ pId }));
-const detailPost = createAction(DETAIL_POST, (post, pId));
+const setPost = createAction(SET_POST, (post_list) => ({post_list}));
+const addPost = createAction(ADD_POST, (post) => ({post}));
+const editPost = createAction(EDIT_POST, (pId, post) => ({pId,post}));
+const deletePost = createAction(DELETE_POST, (pId) => ({pId}));
+const detailPost = createAction(DETAIL_POST, (pId) => ({pId}));
+
 
 //initialState
 const initialState = {
+  main_list: [],
   list: [],
+  post: null
 };
 
 // default data
@@ -37,6 +35,7 @@ const initialPost = {
   modifiedAt: "2021-07-09T17:35:00",
   countReply: 3,
 };
+
 
 // 게시물 생성
 const addPostDB = (post) => 
@@ -60,11 +59,12 @@ const addPostDB = (post) =>
       });
   };
 
+
 // 전체 게시물 조회
-const setPostDB = () => 
+const setPostDB = (mId) => 
   async (dispatch, getState, { history }) => {
     await api
-      .get("/api/recent")
+      .get(`/api/posting/${mId}`)
       .then((res) => {
         //   수정 필요함
         let post_list = res.data.post;
@@ -76,6 +76,7 @@ const setPostDB = () =>
         console.log(err);
       });
   };
+
 
 // 게시물 삭제
 const deletePostDB = (pId) => 
@@ -93,6 +94,7 @@ const deletePostDB = (pId) =>
         console.log(err);
       });
   };
+
 
 // 게시물 수정
 const editPostDB = (pId = null, edit = {}) => 
@@ -116,6 +118,7 @@ const editPostDB = (pId = null, edit = {}) =>
       });
   };
 
+
 // 상세 게시물 조회
 const detailPostDB = (pId = "") => 
   async (dispatch, getState, { history }) => {
@@ -126,6 +129,7 @@ const detailPostDB = (pId = "") =>
       dispatch(detailPost(post));
     });
   };
+
 
 // reducer
 export default handleActons(
@@ -142,18 +146,19 @@ export default handleActons(
 
     [DELETE_POST]: (state, action) =>
       produce(state, (draft) => {
-        // if (p.pId !== action.payload.pId) {
-        //   return p;
-        // }
-        // return { list: del_list };
-        // 수정필요
+        const del_list = draft.list.filter((p, idx) => {
+          if(p.pId !== action.payload.pId) {
+            return p;
+          }
+        });
+        return { list: del_list };
       }),
+
     [DETAIL_POST]: (state, action) =>
       produce(state, (draft) => {
-        // 수정 필요함
         draft.post = action.payload.pId;
-        // 수정 필요함
       }),
+
     [EDIT_POST]: (state, action) =>
       produce(state, (draft) => {
         let idx = draft.list.findIndex((p) => p.pId === action.payload.pId);
@@ -163,12 +168,12 @@ export default handleActons(
   initialState
 );
 
-export const actionCreator = {
-  addPost,
-  setPost,
-  editPost,
-  deletePost,
-  detailPost,
+export const actionCreators = {
+  // addPost,
+  // setPost,
+  // editPost,
+  // deletePost,
+  // detailPost,
   addPostDB,
   setPostDB,
   editPostDB,

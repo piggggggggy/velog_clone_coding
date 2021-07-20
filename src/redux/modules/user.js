@@ -20,7 +20,7 @@ const logOut = createAction(LOG_OUT, (user) => ({ user }));
 // initialState
 const initialState = {
     user: {},
-    is_login: true,
+    is_login: false,
 };
 
 
