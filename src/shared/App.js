@@ -19,9 +19,9 @@ const App = () => {
         <Route path="/posting" exact component={Posting} />
         <Route path="/posting/:pId" exact component={Detail} />
         <Route path="/signup" exact component={Signup} />
-        <Route path="/Write" exact component={Write} />
-        <Route path="/Write/:pId" exact component={Write} />
-        <Route path="/Setting" exact component={Setting} />
+        <Route path="/write" exact component={Write} />
+        <Route path="/write/:pId" exact component={Write} />
+        <Route path="/setting" exact component={Setting} />
         <Route path="/postingmodal" exact component={PostingModal} />
       </BrowserRouter>
     </div>

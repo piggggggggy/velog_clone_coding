@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { history } from "../redux/configStore";
 import { useParams } from "react-router";
 import LoginModal from "../components/LoginModal";
+// import { history } from "../redux/configStore";
 
 const SharedHeader = (props) => {
 
@@ -46,7 +47,7 @@ const SharedHeader = (props) => {
                         </a>
                         {is_login ? 
                         <>
-                        <button>새 글 작성</button>
+                        <button onClick={()=>{history.push('/write'); window.location.reload()}}>새 글 작성</button>
                         <div>
                             <div>
                                 <img src="https://media.vlpt.us/images/pyt4105/profile/0d998bb2-e2ce-430a-8434-c28369fc5009/%ED%83%80%EC%9D%B8%EC%9D%98%EC%82%B6.png?w=120"/>

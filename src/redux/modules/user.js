@@ -20,14 +20,14 @@ const logOut = createAction(LOG_OUT, (user) => ({ user }));
 // initialState
 const initialState = {
     user: {},
-    is_login: true,
+    is_login: false,
 };
 
 
 // middleware
 
 // 로그인
-const logInDB = (email, pwd) =>
+const logInDB = (email, pwd) => 
     async (dispatch, getstate, {history}) => {
         await api
             .post('/api/member/login', {

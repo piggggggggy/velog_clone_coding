@@ -99,7 +99,7 @@ const LoginModal = (props) => {
                                 </Login>
                                 <Footer>
                                     <span>아직 회원이 안니신가요?</span>
-                                    <div tabIndex="7" onClick={()=>{history.replace('/signup')}}>회원가입</div>
+                                    <div tabIndex="7" onClick={()=>{history.push('/signup'); window.location.reload()}}>회원가입</div>
                                 </Footer>
                             </div>
                         </ContentBox>
