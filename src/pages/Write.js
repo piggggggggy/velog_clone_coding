@@ -3,7 +3,10 @@ import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/react-editor";
 import styled from "styled-components";
 
+import PostingModal from "./PostingModal";
+
 const Write = (props) => {
+  
   const editorRef = useRef();
   const _title = React.useRef();
   const submit = () => {
@@ -22,8 +25,18 @@ const Write = (props) => {
     console.log(contentsHtml.split('"')[1]);
   };
 
+  const [modal, setModal] = React.useState(false);
+    const onModal = () => {
+        setModal(true);
+    };
+    const offModal = () => {
+        setModal(false);
+    }
+
+
   return (
     <React.Fragment>
+      <PostingModal Open={modal} Close={offModal}/>
       <PostContainer>
         <WriteHeadrContainer>
           <input
@@ -55,7 +68,7 @@ const Write = (props) => {
         </Exit>
         <PostingButtonBox>
           <TemporaryButton>임시저장</TemporaryButton>
-          <PostingButton onClick={submit}>출간하기</PostingButton>
+          <PostingButton onClick={onModal}>출간하기</PostingButton>
         </PostingButtonBox>
       </Footer>
     </React.Fragment>
