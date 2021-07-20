@@ -1,15 +1,44 @@
-import React from "react";
+import React, { useRef } from "react";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/react-editor";
 import styled from "styled-components";
 import WriteHeader from "../components/WriteHeader";
 
 const Write = (props) => {
+  const editorRef = useRef();
+  const _title = React.useRef();
+  const submit = () => {
+    const contentsHtml = editorRef.current.getInstance().getHTML();
+    const contentsMd = editorRef.current.getInstance().getMarkdown();
+    const image = contentsHtml.split("=")[1]?.split('"')[1];
+
+    const post = {
+      title: _title.current.value,
+      contents: contentsMd.replaceAll("#", ""),
+      contentsHtml,
+      contentsMd,
+      image,
+    };
+    console.log(post);
+    console.log(contentsHtml.split('"')[1]);
+  };
+
   return (
     <React.Fragment>
       <PostContainer>
-        <WriteHeader />
+        <WriteHeadrContainer>
+          <input
+            type="text"
+            placeholder="제목을 입력하세요"
+            ref={_title}
+          ></input>
+          <UnderLine></UnderLine>
+          <TagContainer>
+            <Input type="text" placeholder="태그를 입력하세요"></Input>
+          </TagContainer>
+        </WriteHeadrContainer>
         <Editor
+          ref={editorRef}
           initialValue=""
           previewStyle="vertical"
           height="75vh"
@@ -26,8 +55,8 @@ const Write = (props) => {
           <span>나가기</span>
         </Exit>
         <PostingButtonBox>
-        <TemporaryButton>임시저장</TemporaryButton>
-        <PostingButton>출간하기</PostingButton>
+          <TemporaryButton>임시저장</TemporaryButton>
+          <PostingButton onClick={submit}>출간하기</PostingButton>
         </PostingButtonBox>
       </Footer>
     </React.Fragment>
@@ -101,7 +130,7 @@ const Exit = styled.button`
   border: none;
   display: flex;
   outline: none;
-  
+
   & > svg {
     stroke: currentColor;
     fill: currentColor;
@@ -109,5 +138,59 @@ const Exit = styled.button`
     height: 1em;
     width: 1em;
   }
+`;
+
+////
+const WriteHeadrContainer = styled.div`
+  width: 100%;
+  padding: 1rem;
+  background-color: white;
+  & > input {
+    display: block;
+    padding: 0px;
+    width: 100%;
+    height: 50px;
+    line-height: 1.5;
+    outline: none;
+    border: none;
+    font-weight: 900;
+    font-size: 1.8rem;
+  }
+`;
+// const Title = styled.input`
+//   display: block;
+//   padding: 0px;
+//   width: 100%;
+//   height: 50px;
+//   line-height: 1.5;
+//   outline: none;
+//   border: none;
+//   font-weight: 900;
+//   font-size: 1.8rem;
+// `;
+
+const UnderLine = styled.div`
+  margin-top: 0rem;
+  margin-bottom: 0.5rem;
+  background-color: rgb(73, 80, 87);
+  height: 6px;
+  width: 4rem;
+`;
+
+const TagContainer = styled.div`
+  color: rgb(52, 58, 64);
+  font-size: 1.125rem;
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const Input = styled.input`
+  line-height: 1.5rem;
+  font-size: 0.5rem;
+  display: inline-flex;
+  outline: none;
+  cursor: text;
+  min-width: 8rem;
+  border: none;
 `;
 export default Write;
