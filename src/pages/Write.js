@@ -8,6 +8,7 @@ import { actionCreators as postActions } from "../redux/modules/post";
 
 
 const Write = (props) => {
+  const memberId = useSelector((state) => state.user.user.memberId);
   const pId = props.match.params.pId;
   const dispatch = useDispatch();
   const {history} = props;
@@ -43,7 +44,7 @@ const Write = (props) => {
       setModal(false);
   };
 
-
+  console.log(title);
   const createPost = () => {
     
     const contentsHtml = editorRef.current.getInstance().getHTML();
@@ -52,13 +53,16 @@ const Write = (props) => {
     const post = {
       title: title,
       content: contentsHtml,
+      memberId: 1,
+      likeCount: 0,
       contentMd: contentsMd,
-      PreviewText: postIntro,
+      previewText: postIntro,
+      originalFileName: "asdf",
       tags: {tagname: [tag]}
     }
 
     console.log(post);
-    // dispatch(postActions.addPostDB(post));
+    dispatch(postActions.addPostDB(post));
   };
 
 
@@ -173,13 +177,9 @@ const Write = (props) => {
           <span onClick={history.goBack}>나가기</span>
         </Exit>
         <PostingButtonBox>
-          {/* <TemporaryButton>임시저장</TemporaryButton> */}
           <PostingButton onClick={onModal}>출간하기</PostingButton>
         </PostingButtonBox>
       </Footer>
-      {/* <textarea
-        dangerouslySetInnerHTML={{ __html: post.contentsHtml }}
-      ></textarea> */}
     </React.Fragment>
   );
 };

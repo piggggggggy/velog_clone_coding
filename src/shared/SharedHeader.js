@@ -9,6 +9,8 @@ import LoginModal from "../components/LoginModal";
 // import { history } from "../redux/configStore";
 
 const SharedHeader = (props) => {
+    
+    const memberId = useSelector((state) => state.user.user.memberId);
 
     const dispatch = useDispatch();
     const is_login = useSelector((state) => state.user.is_login);
@@ -76,8 +78,8 @@ const SharedHeader = (props) => {
                         <Select>
                             <div>
                                 <div>
-                                    <a href="/@pyt4105">
-                                        <div>내 벨로그</div>
+                                    <a>
+                                        <div onClick={()=>{history.push(`/posting/${memberId}`)}}>내 벨로그</div>
                                     </a>
                                     <a>
                                         <div onClick={()=>{history.push('/setting')}}>설정</div>

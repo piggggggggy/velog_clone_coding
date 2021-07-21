@@ -17,7 +17,6 @@ const App = () => {
       <Route path="/posting/detail/:postId" exact component={Detail} />
       <Route path="/signup" exact component={Signup} />
       <Route path="/write" exact component={Write} />
-      <Route path="/write" exact component={Write} />
       <Route path="/write/:postId" exact component={Write} />
       <Route path="/setting" exact component={Setting} />
       <Route path="/postingmodal" exact component={PostingModal} />

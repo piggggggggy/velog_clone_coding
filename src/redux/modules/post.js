@@ -44,14 +44,18 @@ const addPostDB = (post) =>
       .post("/api/posting/write", {
         title: post.title,
         content: post.content,
+        memberId: post.memberId,
+        likeCount: post.likeCount,
+        contentMd: post.contentMd,
+        previewText: post.previewText,
         originalFileName: post.originalFileName,
-        tag: post.tag,
+        tags: post.tags
       })
       .then((res) => {
         console.log(res);
         window.alert("포스팅 완료!");
         dispatch(addPost(post));
-        history.push("/posting");
+        history.push(`/posting/${post.memberId}`);
       })
       .catch((err) => {
         window.alert("포스팅에 실패하였어요!");
@@ -61,12 +65,14 @@ const addPostDB = (post) =>
 
 
 // 전체 게시물 조회
-const setPostDB = (mId) => 
+const setPostDB = (memberId) => 
   async (dispatch, getState, { history }) => {
     await api
-      .get(`/api/posting/${mId}`)
+      .get(`/api/posting/${memberId}`)
       .then((res) => {
+        console.log(res)
         //   수정 필요함
+        return;
         let post_list = res.data.post;
         dispatch(setPost(post_list));
         //   수정 필요함

@@ -5,10 +5,12 @@ import SharedHeader from "../shared/SharedHeader";
 
 const Posting = (props) => {
 
+    const memberId = props.match.params.memberId;
+    // console.log(props.match.params.memberId);
     return (
         <React.Fragment>
             <SharedHeader/>
-            <PostingBody/>
+            <PostingBody memberId={memberId}/>
         </React.Fragment>
     );
 }
