@@ -1,26 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
-import { comment } from "postcss-selector-parser";
 
 const CommentBody = (props) => {
+  const pId = props
+
+  const dispatch = useDispatch();
   // const nickname = useSelector((state) => state.user.user?.nickname);
   const comments = useSelector((state) => state.comment.comments);
-  const dispatch = useDispatch();
-
+  const [comment, setComment] = useState();
+  const changeComment = (e) => {
+    setComment(e.target.value);
+  };
+  console.log(comment);
   const registComment = (e) => {
-    const comment = {
+    const cmt = {
       contents: comment,
     };
-    dispatch(commentActions.addCommentDB(comment));
+    dispatch(commentActions.addCommentDB(cmt));
   };
   return (
     <React.Fragment>
       <CommentContainer>
         <ContentsContainer>
           <h4>{comments.length}개의 댓글</h4>
-          <CommentPostBox cols="30" rows="5" value={comment}/>
+          <CommentPostBox cols="30" rows="5" onChange={changeComment} />
           <CommentButtonBox>
             <button onClick={registComment}>댓글 작성</button>
           </CommentButtonBox>

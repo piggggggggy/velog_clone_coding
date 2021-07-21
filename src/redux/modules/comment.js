@@ -60,6 +60,7 @@ const addCommentDB = (pId, comment) =>
       .post(`/api/comment/${pId}`, comment)
       .then((res) => {
         console.log(res);
+        return;
         window.alert("댓글 작성 완료!");
         dispatch(addCmt(comment));
       })
