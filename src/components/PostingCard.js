@@ -17,11 +17,11 @@ const PostingCard = (props) => {
                 </a>
                 <p>{props.preText}</p>
                 <TagContent>
-                    {props.tags.tagName.map((t, idx) => {
+                    {/* {props.tags.tagname.map((t, idx) => {
                         return(
                             <a key={idx}>{t}</a>
                         )
-                    })}
+                    })} */}
                 </TagContent>
                 <DateContent>
                     <span>{props.createdAt}</span>
@@ -31,20 +31,6 @@ const PostingCard = (props) => {
             </CardContainer>
         </React.Fragment>
     );
-};
-
-PostingCard.defaultProps = {
-    pId: 1,
-    title: "제목",
-    writer: "작성자1",
-    content: "내용",
-    contentMd: "내용",
-    preText: "내용",
-    originalFileName: "https://media.vlpt.us/images/pyt4105/post/f26cfe50-f7d2-4c0c-a139-9b194bf1b481/알고.png?w=768",
-    tags: {tagName: ["asdffasfa", "dfa", "adsf"]},
-    createdAt: moment().format("YYYY년 M월 D일"),
-    modifiedAt: "2021-07-09T17:35:00",
-    countReply: 3
 };
 
 

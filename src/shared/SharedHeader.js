@@ -10,7 +10,7 @@ import LoginModal from "../components/LoginModal";
 
 const SharedHeader = (props) => {
     
-    const memberId = useSelector((state) => state.user.user.memberId);
+    const memberId = localStorage.getItem('memberId');
 
     const dispatch = useDispatch();
     const is_login = useSelector((state) => state.user.is_login);
@@ -82,7 +82,7 @@ const SharedHeader = (props) => {
                                         <div onClick={()=>{history.push(`/posting/${memberId}`)}}>내 벨로그</div>
                                     </a>
                                     <a>
-                                        <div onClick={()=>{history.push('/setting')}}>설정</div>
+                                        <div onClick={()=>{history.push(`/setting/${memberId}`)}}>설정</div>
                                     </a>
                                     <div onClick={logOut}>로그아웃</div>
                                 </div>
