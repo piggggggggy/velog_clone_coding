@@ -1,19 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { actionCreators as postActions } from "../redux/modules/post";
+import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
 
 const DetailBody = (props) => {
+  const dispatch = useDispatch();
+  const post = useSelector((state) => state.post.post);
+  const postId = useSelector((state) => state.post.postId);
+  // useEffect(() => {
+  //   dispatch(postActions.detailPostDB(postId));
+  // }, []);
+  if (post === null) {
+    return <div>loading</div>;
+  }
+
   return (
     <React.Fragment>
       <DetailContainer>
         <HeadContainer>
-          <Title>프론트엔드 면접 문제 2탄⭐️</Title>
+          <Title>{post.title}</Title>
           <DetailInfo>
             <UserInfo>
               <span>
-                <a href="">JongVeloper</a>
+                <a href="">{post.memberId}</a>
               </span>
               <span>·</span>
-              <span>2021년 7월 18일</span>
+
+              <span>
+                {post.modifedAt
+                  ? moment(post.modifedAt).format("YYYY년 MM월 DD일")
+                  : moment(post.createdAt).format("YYYY년 MM월 DD일")}
+              </span>
             </UserInfo>
             <LikeInfo>
               <button>
@@ -41,14 +59,7 @@ const DetailBody = (props) => {
         </HeadContainer>
         <PostBox>
           <Contents>
-            {/* 추후 수정 */}
-            <div>
-              📌 프론트엔드 면접 문제은행 ⬆ 링크를 참조해서 답변을
-              준비해봤습니다(순서는 무작위입니다😅) 작성한 답변들은 정답이 아닐
-              수 있으니 틀린 부분있다면 피드백 주시면 너무 감사하겠습니다!
-              오늘도 프론트엔드 화이팅..!
-            </div>
-            {/* 추후 수정 */}
+            <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
           </Contents>
         </PostBox>
       </DetailContainer>
