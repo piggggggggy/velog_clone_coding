@@ -13,9 +13,9 @@ const EDIT_CMT = "comment/EDIT_CMT";
 //action creator
 const setCmt = createAction(SET_CMT, (comment_list) => ({ comment_list }));
 const addCmt = createAction(ADD_CMT, (comment) => ({ comment }));
-const deleteCmt = createAction(DELETE_CMT, (cId) => ({ cId }));
-const editCmt = createAction(EDIT_CMT, (cId, comment) => ({
-  cId,
+const deleteCmt = createAction(DELETE_CMT, (commentId) => ({ commentId }));
+const editCmt = createAction(EDIT_CMT, (commentId, comment) => ({
+  commentId,
   comment,
 }));
 
@@ -25,9 +25,9 @@ const initialState = {
 };
 
 const initialComment = {
-  cId: 1,
-  pId: 1,
-  mId: 1,
+  commentId: 1,
+  postId: 1,
+  memberId: 1,
   content: "내용",
   writer: "작성자",
   status: true,
@@ -38,10 +38,11 @@ const initialComment = {
 
 // thunk
 // 전체 댓글 조회
-const setCommentDB = (pId) => 
+const setCommentDB =
+  (postId) =>
   async (dispatch, getState, { history }) => {
     await api
-      .get(`/api/comment/${pId}`)
+      .get(`/api/comment/${postId}`)
       .then((res) => {
         console.log(res);
         let comment_list = res.data.comment;
@@ -54,10 +55,11 @@ const setCommentDB = (pId) =>
   };
 
 // 댓글 생성
-const addCommentDB = (pId, comment) => 
+const addCommentDB =
+  (postId, comment) =>
   async (dispatch, getState, { history }) => {
     await api
-      .post(`/api/comment/${pId}`, comment)
+      .post(`/api/comment/${postId}`, comment)
       .then((res) => {
         console.log(res);
         return;
@@ -70,16 +72,16 @@ const addCommentDB = (pId, comment) =>
       });
   };
 
-
 // 댓글 삭제
-const deleteCmtDB = (cId) => 
+const deleteCmtDB =
+  (commentId) =>
   async (dispatch, getState, { history }) => {
     await api
-      .delete(`/api/comment/${cId}`)
+      .delete(`/api/comment/${commentId}`)
       .then((res) => {
         console.log(res);
         window.alert("댓글이 삭제되었어요!");
-        dispatch(deleteCmt(cId));
+        dispatch(deleteCmt(commentId));
       })
       .catch((err) => {
         window.alert("댓글 삭제가 오류가 생겼어요!");
@@ -87,22 +89,21 @@ const deleteCmtDB = (cId) =>
       });
   };
 
-
 // 수정 필요
 // 댓글 수정
-const editCmtDB = (cId, comment) => 
+const editCmtDB =
+  (commentId, comment) =>
   async (dispatch, getState, { history }) => {
     await api
-      .put(`/api/comment/${cId}`, comment)
+      .put(`/api/comment/${commentId}`, comment)
       .then((res) => {
-        dispatch(editCmt(cId, res.comment));
+        dispatch(editCmt(commentId, res.comment));
       })
       .catch((err) => {
         window.alert("댓글 수정에 오류가 있어요!");
         console.log(err);
       });
   };
-
 
 // reducer
 export default handleActions(
@@ -117,14 +118,14 @@ export default handleActions(
       }),
     [DELETE_CMT]: (state, action) =>
       produce(state, (draft) => {
-        const id = action.payload.cId;
+        const id = action.payload.commentId;
         draft.commnets = draft.comments.filter((c) => {
           return c.id !== id;
         });
       }),
     [EDIT_CMT]: (state, aciton) =>
       produce(state, (draft) => {
-        let idx = draft.comments.findIndex((c) => c.id === aciton.payload.cId);
+        let idx = draft.comments.findIndex((c) => c.id === aciton.payload.commentId);
         draft.comments[idx] = {
           ...aciton.payload.comment,
         };
