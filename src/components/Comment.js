@@ -1,16 +1,24 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as commentAciton } from "../redux/modules/comment";
+import { actionCreators as commentAcitons } from "../redux/modules/comment";
+import moment from "moment";
 const Comment = (props) => {
   const comments = useSelector((state) => state.comment.comments);
-  const pId = props.pId;
+  const { pId, nickName, comment, memberId, createdAt, modfiedAt, cId } = props;
   console.log(pId);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(commentAciton.setCommentDB(pId));
+    dispatch(commentAcitons.setCommentDB(pId));
   }, []);
 
+  const deleteComment = () => {
+    dispatch(commentAcitons.deleteCmtDB(cId));
+  };
+
+  const editComment = () => {
+    dispatch(commentAcitons.editCmtDB(cId, comment));
+  };
   return (
     <React.Fragment>
       <CommentsContainer>
@@ -22,14 +30,24 @@ const Comment = (props) => {
               </a>
               <CommentUserInfo>
                 <UserNameBox>
-                  <a href="">JongVeloper</a>
+                  <a href="">{nickName}</a>
                 </UserNameBox>
-                <div>2021년 7월18일</div>
+                <div>
+                  {modfiedAt !== createdAt
+                    ? moment(modfiedAt).format("YYYY년 MM월 DD일")
+                    : moment(createdAt).format("YYYY년 MM월 DD일")}
+                </div>
               </CommentUserInfo>
             </CommentUser>
+            {nickName === memberId && (
+              <div class="buttons">
+                <span onClick={editComment}>수정</span>
+                <span onClick={deleteComment}>삭제</span>
+              </div>
+            )}
           </CommentBox>
           <ContentsDesc>
-            <p>와우댓글이달렸어여!</p>
+            <p>{comment}</p>
             <ReplyBox>
               <div>
                 <svg viewBox="0 0 12 12">
@@ -69,12 +87,19 @@ const CommentContetsBox = styled.div`
 `;
 
 const CommentBox = styled.div`
-  width: 59%;
+  width: 100%;
   display: flex;
   -webkit-box-pack: justify;
   justify-content: space-between;
   -webkit-box-align: center;
   align-items: center;
+
+  & > .buttons {
+    & > span {
+      cursor: pointer;
+      margin-right: 1rem;
+    }
+  }
 `;
 
 const CommentUser = styled.div`
