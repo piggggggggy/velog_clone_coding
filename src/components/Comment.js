@@ -5,9 +5,10 @@ import { actionCreators as commentAciton } from "../redux/modules/comment";
 const Comment = (props) => {
   const comments = useSelector((state) => state.comment.comments);
   const pId = props.pId;
+  console.log(pId);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(commentAciton.setCmtDB(pId));
+    dispatch(commentAciton.setCommentDB(pId));
   }, []);
 
   return (
