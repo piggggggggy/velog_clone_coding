@@ -6,7 +6,7 @@ const GlobalStyles = createGlobalStyle`
 
     *{
         box-sizing: border-box;
-        background: #f8f9fa;
+        /* background: #f8f9fa; */
     }
 
 `;

@@ -9,7 +9,7 @@ const Detail = (props) => {
   console.log(props)
   return (
     <React.Fragment>
-      <SharedHeader />
+      <SharedHeader/>
       <DetailBody />
       <CommentBody pId={pId} />
       <Comment pId={pId}/>

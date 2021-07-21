@@ -10,7 +10,6 @@ import LoginModal from "../components/LoginModal";
 
 const SharedHeader = (props) => {
     
-    const { Logo } = props;
     const memberId = localStorage.getItem('memberId');
 
     const dispatch = useDispatch();
@@ -98,11 +97,13 @@ const SharedHeader = (props) => {
             <LoginModal Open={modal} Close={offModal}/>
         </React.Fragment>
     );
-}
+};
+
 const Container = styled.div`
     height: 4rem;
     display: flex;
     align-items: center;
+    background: #f8f9fa;
 `;
 
 const HeaderContainer = styled.div`

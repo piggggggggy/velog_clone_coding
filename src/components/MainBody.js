@@ -58,6 +58,7 @@ const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
   color: #212529;
+  background: #f8f9fa;
 `;
 
 const NavBox = styled.div`

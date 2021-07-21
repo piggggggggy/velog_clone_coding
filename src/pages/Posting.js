@@ -9,7 +9,7 @@ const Posting = (props) => {
     // console.log(props.match.params.memberId);
     return (
         <React.Fragment>
-            <SharedHeader/>
+            <SharedHeader memberId={memberId}/>
             <PostingBody memberId={memberId}/>
         </React.Fragment>
     );
