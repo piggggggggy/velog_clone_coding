@@ -31,9 +31,9 @@ const Setting = (props) => {
                             </div>
                             <ContentBlock>
                                 <Content>{user.velogName}.log</Content>
-                                <EditWrapper>
+                                {/* <EditWrapper>
                                     <EditButton>수정</EditButton>
-                                </EditWrapper>
+                                </EditWrapper> */}
                             </ContentBlock>
 
                         </div>
@@ -73,9 +73,9 @@ const Setting = (props) => {
                                         </SecondLi>
                                     </ElUl>
                                 </Content>
-                                <EditWrapper>
+                                {/* <EditWrapper>
                                     <EditButton>수정</EditButton>
-                                </EditWrapper>
+                                </EditWrapper> */}
                             </ContentBlock>
 
                         </div>
