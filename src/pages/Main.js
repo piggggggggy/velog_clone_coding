@@ -6,7 +6,7 @@ const Main = (props) => {
 
     return (
         <React.Fragment>
-            <SharedHeader/>
+            <SharedHeader Logo/>
             <MainBody/>
         </React.Fragment>
     );

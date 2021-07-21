@@ -22,7 +22,8 @@ const detailPost = createAction(DETAIL_POST, (pId) => ({pId}));
 const initialState = {
   main_list: [],
   list: [],
-  post: null
+  user: {},
+  post: null,
 };
 
 // default data

@@ -8,7 +8,7 @@ const Setting = (props) => {
 
     return (
         <React.Fragment>
-            <SharedHeader/>
+            <SharedHeader Logo/>
             <SettingContainer>
                 <SectionHead>
                     <ImageArea>

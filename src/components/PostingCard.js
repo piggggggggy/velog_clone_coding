@@ -3,19 +3,20 @@ import styled from "styled-components";
 import moment from "moment";
 
 const PostingCard = (props) => {
+    const post = props.postingResponseDto;
 
     return (
         <React.Fragment>
             <CardContainer>
                 <a>
                     <div>
-                        <img src={props.originalFileName}></img>
+                        <img src={post.originalFileName}></img>
                     </div>
                 </a>
                 <a>
-                    <h2>{props.title}</h2>
+                    <h2>{post.title}</h2>
                 </a>
-                <p>{props.preText}</p>
+                <p>{post.previewText}</p>
                 <TagContent>
                     {/* {props.tags.tagname.map((t, idx) => {
                         return(
@@ -24,9 +25,9 @@ const PostingCard = (props) => {
                     })} */}
                 </TagContent>
                 <DateContent>
-                    <span>{props.createdAt}</span>
+                    <span>{post.createdAt}</span>
                     <div>·</div>
-                    <span>{props.countReply}개의 댓글</span>
+                    <span>개의 댓글</span>
                 </DateContent>
             </CardContainer>
         </React.Fragment>
