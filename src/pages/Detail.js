@@ -8,6 +8,8 @@ import { actionCreators as postActions } from "../redux/modules/post";
 
 const Detail = (props) => {
   const postId = props.match.params.postId;
+  const commentId = props.match.params.postId;
+  console.log(commentId);
   console.log(postId);
   const dispatch = useDispatch();
   const detailPost = useSelector((state) => state.post.main_list);

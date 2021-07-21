@@ -4,11 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 
 const CommentBody = (props) => {
-  const pId = props
-
+  // const commentId = props.match.params.commentId;
+  // console.log(commentId);
+  
+  const postId = props.postId;
   const dispatch = useDispatch();
   // const nickname = useSelector((state) => state.user.user?.nickname);
   const comments = useSelector((state) => state.comment.comments);
+  console.log(comments);
   const [comment, setComment] = useState();
   const changeComment = (e) => {
     setComment(e.target.value);

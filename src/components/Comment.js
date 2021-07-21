@@ -4,20 +4,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentAcitons } from "../redux/modules/comment";
 import moment from "moment";
 const Comment = (props) => {
-  const comments = useSelector((state) => state.comment.comments);
-  const { pId, nickName, comment, memberId, createdAt, modfiedAt, cId } = props;
-  console.log(pId);
+  const comments = useSelector((state) => state.comment.comment);
+  const {
+    postId,
+    nickName,
+    comment,
+    memberId,
+    createdAt,
+    modfiedAt,
+    commentId,
+  } = props;
+  console.log(comments);
+  // const memberId = localStorage.getItem("memberId");
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(commentAcitons.setCommentDB(pId));
+    dispatch(commentAcitons.setCommentDB(postId));
   }, []);
 
   const deleteComment = () => {
-    dispatch(commentAcitons.deleteCmtDB(cId));
+    dispatch(commentAcitons.deleteCmtDB(commentId));
   };
 
   const editComment = () => {
-    dispatch(commentAcitons.editCmtDB(cId, comment));
+    dispatch(commentAcitons.editCmtDB(commentId, comment));
   };
   return (
     <React.Fragment>
