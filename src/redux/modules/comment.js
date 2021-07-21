@@ -43,6 +43,7 @@ const setCommentDB = (pId) =>
     await api
       .get(`/api/comment/${pId}`)
       .then((res) => {
+        console.log(res);
         let comment_list = res.data.comment;
         dispatch(setCmt(comment_list));
       })
