@@ -6,7 +6,7 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 const CommentBody = (props) => {
   // const commentId = props.match.params.commentId;
   // console.log(commentId);
-  
+  const memberId = localStorage.getItem("memberId");
   const postId = props.postId;
   const dispatch = useDispatch();
   // const nickname = useSelector((state) => state.user.user?.nickname);
@@ -19,7 +19,9 @@ const CommentBody = (props) => {
   console.log(comment);
   const registComment = (e) => {
     const cmt = {
-      contents: comment,
+      postId: postId,
+      content: comment,
+      memberId: memberId,
     };
     dispatch(commentActions.addCommentDB(cmt));
   };

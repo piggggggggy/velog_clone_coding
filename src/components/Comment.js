@@ -15,7 +15,7 @@ const Comment = (props) => {
     commentId,
   } = props;
   console.log(comments);
-  // const memberId = localStorage.getItem("memberId");
+ 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(commentAcitons.setCommentDB(postId));
