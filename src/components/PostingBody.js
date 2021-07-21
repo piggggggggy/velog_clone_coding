@@ -8,10 +8,11 @@ import PostingCard from "./PostingCard";
 
 const PostingBody = (props) => {
     const dispatch = useDispatch();
-    const memberId = useSelector((state) => state.user.user.memberId);
+    const memberId = props.memberId;
     const post_list = useSelector((state) => state.post.list);
 
     React.useEffect = () => {
+        console.log(memberId);
         dispatch(postActions.setPostDB(memberId));
     };
 

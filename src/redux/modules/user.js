@@ -9,6 +9,7 @@ import { deleteCookie, setCookie } from "../../shared/Cookie";
 
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
+const LOG_CHECK = "LOG_CHECK";
 // const GET_USER = "GET_USER";
 
 
@@ -16,6 +17,7 @@ const LOG_OUT = "LOG_OUT";
 
 const setUser = createAction(SET_USER, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
+const logCheck = createAction(LOG_CHECK, (user) => ({ user }));
 // const getUser = createAction(GET_USER, (user) => ({ user }));
 
 
@@ -49,13 +51,31 @@ const logInDB = (email, pwd) =>
                         velogName: res.data.member.velogName
                     })
                 );
-                const USER_TOKEN = res.data.tokenDto.accessToken; // 연결하고 확인
-                setCookie('token', USER_TOKEN, 1);
+                localStorage.setItem('email', res.data.member.email);
+                localStorage.setItem('memberId', res.data.member.memberId);
+                localStorage.setItem('nickName', res.data.member.nickName);
+                localStorage.setItem('velogName', res.data.member.velogName);
+                localStorage.setItem('comment', res.data.member.comment);
+                localStorage.setItem('profileImg', res.data.member.profileImg);
+                // const USER_TOKEN = res.data.tokenDto.accessToken;
+                setCookie('token', res.data.tokenDto.accessToken, 1);
                 // history.replace('/');
-                // window.location.reload();
             }).catch((err) => {
                 console.log("에러났음", err);
             });
+    };
+    
+
+// 로그인 체크
+const loginCheckDB = () =>
+    async (dispatch, getState, {history}) => {
+        const memberId = localStorage.getItem('memberId');
+        const token = document.cookie;
+
+        if (memberId !== null && token !== '') {
+            dispatch(logCheck());
+        }
+    
     };
 
 
@@ -77,12 +97,19 @@ const registerDB = (data) =>
             });
     };
 
+
 // 로그아웃
 const logOutDB = () => {
     return function (dispatch, getState, {history}) {
+        deleteCookie('token');
+        localStorage.removeItem('email');
+        localStorage.removeItem('memberId');
+        localStorage.removeItem('nickName');
+        localStorage.removeItem('velogName');
+        localStorage.removeItem('comment');
+        localStorage.removeItem('profileImg');
         dispatch(logOut());
         history.push('/');
-        window.location.reload();
     };
 };
 
@@ -101,7 +128,6 @@ export default handleActions(
         // produce(state, (draft) => {
         //     draft.user = action.payload.user;
         // }),
-
         [LOG_OUT]: (state, action) => 
         produce(state, (draft) => {
             deleteCookie('token');
@@ -109,6 +135,10 @@ export default handleActions(
             draft.is_login = false;
         }),
 
+        [LOG_CHECK]: (state, action) => 
+        produce(state, (draft) => {
+            draft.is_login = true;
+        }),
 
 
     },
@@ -120,6 +150,7 @@ const actionCreators = {
     logInDB,
     registerDB,
     logOutDB,
+    loginCheckDB
 };
 
 export { actionCreators };
