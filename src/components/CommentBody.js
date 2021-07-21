@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as commentActions } from "../redux/modules/comment";
+import { comment } from "postcss-selector-parser";
 
 const CommentBody = (props) => {
+  // const nickname = useSelector((state) => state.user.user?.nickname);
+  const comments = useSelector((state) => state.comment.comments);
+  const dispatch = useDispatch();
+
+  const registComment = (e) => {
+    const comment = {
+      contents: comment,
+    };
+    dispatch(commentActions.addCommentDB(comment));
+  };
   return (
     <React.Fragment>
       <CommentContainer>
         <ContentsContainer>
-          <h4>1개의 댓글</h4>
-          <CommentPostBox />
+          <h4>{comments.length}개의 댓글</h4>
+          <CommentPostBox cols="30" rows="5" value={comment}/>
           <CommentButtonBox>
-            <button>댓글 작성</button>
+            <button onClick={registComment}>댓글 작성</button>
           </CommentButtonBox>
         </ContentsContainer>
       </CommentContainer>
@@ -44,7 +57,6 @@ const CommentPostBox = styled.textarea`
   min-height: 7rem;
   font-size: 1.5rem;
   line-height: 1.75;
-  placeholder: none;
 `;
 
 const CommentButtonBox = styled.div`

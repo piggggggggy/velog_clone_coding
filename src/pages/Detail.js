@@ -5,12 +5,13 @@ import Comment from "../components/Comment";
 import SharedHeader from "../shared/SharedHeader";
 
 const Detail = (props) => {
+  const pId = props.match.params.pId
   return (
     <React.Fragment>
-      <SharedHeader/>
+      <SharedHeader />
       <DetailBody />
-      <CommentBody/>
-      <Comment/>
+      <CommentBody />
+      <Comment pId={pId}/>
     </React.Fragment>
   );
 };
