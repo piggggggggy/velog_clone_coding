@@ -9,28 +9,19 @@ import { deleteCookie, setCookie } from "../../shared/Cookie";
 
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
-const GET_USER = "GET_USER";
+// const GET_USER = "GET_USER";
 
 
 // action creator
 
 const setUser = createAction(SET_USER, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
-const getUser = createAction(GET_USER, (user) => ({ user }));
+// const getUser = createAction(GET_USER, (user) => ({ user }));
 
 
 // initialState
 const initialState = {
-    user: {
-        memberId: 44,
-        email: "pyt4105@gmail.com",
-        nickName: "용택이",
-        velogName: "piggy",
-        comment: "짜증나 진짜로",
-        mStatus: true,
-        profileImg: "https://media.vlpt.us/images/pyt4105/profile/0d998bb2-e2ce-430a-8434-c28369fc5009/%ED%83%80%EC%9D%B8%EC%9D%98%EC%82%B6.png?w=240",
-        github: "https://github.com/piggggggggy",
-    },
+    user: {},
     is_login: false,
 };
 
@@ -39,24 +30,29 @@ const initialState = {
 
 // 로그인
 const logInDB = (email, pwd) => 
-    async (dispatch, getstate, {history}) => {
+    async (dispatch, getState, {history}) => {
         await api
             .post('/api/member/login', {
                 email: email,
                 pwd: pwd
             })
             .then((res) => {
-                // console.log(res);
+                console.log(res);
                 dispatch(
                     setUser({ // 연결하고 확인
-                        mName: res.data.mName,
-                        email: res.data.email,
-                        mId: res.data.mId,
+                        comment: res.data.member.comment,
+                        email: res.data.member.email,
+                        github: res.data.member.github,
+                        memberId: res.data.member.memberId,
+                        nickName: res.data.member.nickName,
+                        profileImg: res.data.member.profileImg,
+                        velogName: res.data.member.velogName
                     })
                 );
-                // const USER_TOKEN = res.data.token; // 연결하고 확인
-                setCookie('token', res.data.token, 1);
-                history.replace('/')
+                const USER_TOKEN = res.data.tokenDto.accessToken; // 연결하고 확인
+                setCookie('token', USER_TOKEN, 1);
+                // history.replace('/');
+                // window.location.reload();
             }).catch((err) => {
                 console.log("에러났음", err);
             });
@@ -70,14 +66,14 @@ const registerDB = (data) =>
             .post('/api/member/register', {
                 email: data.email,
                 pwd: data.pwd,
-                pwdCheck: data.pwdCheck,
                 nickName: data.mName,
             })
             .then((res) => {
                 console.log(res);
-                history.replace('/')
+                history.replace('/');
+                window.location.reload();
             }).catch((err) => {
-                console.log('에서났음', err);
+                console.log('에러남', err);
             });
     };
 
@@ -101,10 +97,10 @@ export default handleActions(
             draft.is_login = true;
         }),
 
-        [GET_USER]: (state, action) =>
-        produce(state, (draft) => {
-            draft.user = action.payload.user;
-        }),
+        // [GET_USER]: (state, action) =>
+        // produce(state, (draft) => {
+        //     draft.user = action.payload.user;
+        // }),
 
         [LOG_OUT]: (state, action) => 
         produce(state, (draft) => {

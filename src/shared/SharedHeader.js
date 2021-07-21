@@ -12,6 +12,7 @@ const SharedHeader = (props) => {
 
     const dispatch = useDispatch();
     const is_login = useSelector((state) => state.user.is_login);
+    console.log(is_login);
     const [modal, setModal] = React.useState(false);
     const [userTab, setTab] = React.useState(false);
     const onModal = () => {
@@ -31,7 +32,6 @@ const SharedHeader = (props) => {
     const logOut = () => {
         dispatch(userActions.logOutDB());
     }
-
 
     return (
         <React.Fragment>
@@ -63,7 +63,7 @@ const SharedHeader = (props) => {
                         </a>
                         {is_login ? 
                         <>
-                        <button onClick={()=>{history.push('/write'); window.location.reload()}}>새 글 작성</button>
+                        <button onClick={()=>{history.push('/write')}}>새 글 작성</button>
                         <div>
                             <div>
                                 <img src="https://media.vlpt.us/images/pyt4105/profile/0d998bb2-e2ce-430a-8434-c28369fc5009/%ED%83%80%EC%9D%B8%EC%9D%98%EC%82%B6.png?w=120"/>
@@ -79,8 +79,8 @@ const SharedHeader = (props) => {
                                     <a href="/@pyt4105">
                                         <div>내 벨로그</div>
                                     </a>
-                                    <a href="/setting">
-                                        <div>설정</div>
+                                    <a>
+                                        <div onClick={()=>{history.push('/setting')}}>설정</div>
                                     </a>
                                     <div onClick={logOut}>로그아웃</div>
                                 </div>

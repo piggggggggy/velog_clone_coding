@@ -14,7 +14,9 @@ const LoginModal = (props) => {
     const pwd = useRef();
 
     const logIn = () => {
+        console.log("dd");
         dispatch(userActions.logInDB(email.current.value, pwd.current.value));
+        Close();
     }
 
 
@@ -33,7 +35,7 @@ const LoginModal = (props) => {
                     </LeftContent>
                     <RightContent>
                         <Xbox>
-                            <svg onClick={Close} stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" tabindex="1" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <svg onClick={Close} stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" tabIndex="1" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
                             </svg>
                         </Xbox>
@@ -45,14 +47,14 @@ const LoginModal = (props) => {
                                     <section>
                                         <h4>이메일로 로그인</h4>
                                         <form>
-                                            <input ref={email} style={{border: "1px solid #dee2e6", borderRadius: "2px"}} tabindex="2" placeholder="이메일을 입력하세요."></input>
+                                            <input ref={email} style={{border: "1px solid #dee2e6", borderRadius: "2px"}} tabIndex="2" placeholder="이메일을 입력하세요."></input>
                                         </form>
                                     </section>
                                     
                                     <section style={{marginTop: "1rem"}}>
                                         <form>
-                                            <input ref={pwd} type="passWord" tabindex="2" placeholder="비밀번호를 입력하세요."></input>
-                                            <button onClick={()=>{logIn()}} tabIndex="3">로그인</button>
+                                            <input ref={pwd} type="passWord" tabIndex="2" placeholder="비밀번호를 입력하세요."></input>
+                                            <a onClick={logIn} tabIndex="3">로그인</a>
                                         </form>
                                     </section>
 
