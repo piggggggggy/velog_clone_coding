@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import moment from "moment";
 
 const PostingCard = (props) => {
 
@@ -8,27 +9,44 @@ const PostingCard = (props) => {
             <CardContainer>
                 <a>
                     <div>
-                        <img src="https://media.vlpt.us/images/pyt4105/post/f26cfe50-f7d2-4c0c-a139-9b194bf1b481/알고.png?w=768"></img>
+                        <img src={props.originalFileName}></img>
                     </div>
                 </a>
                 <a>
-                    <h2>알고리즘 11 | 나이순 정렬</h2>
+                    <h2>{props.title}</h2>
                 </a>
-                <p>나이순 정렬</p>
+                <p>{props.preText}</p>
                 <TagContent>
-                    <a>백준</a>
-                    <a>알고리즘</a>
-                    <a>코딩테스트</a>
+                    {props.tags.tagName.map((t, idx) => {
+                        return(
+                            <a key={idx}>{t}</a>
+                        )
+                    })}
                 </TagContent>
                 <DateContent>
-                    <span>2021년 7월 7일</span>
+                    <span>{props.createdAt}</span>
                     <div>·</div>
-                    <span>0개의 댓글</span>
+                    <span>{props.countReply}개의 댓글</span>
                 </DateContent>
             </CardContainer>
         </React.Fragment>
     );
-}
+};
+
+PostingCard.defaultProps = {
+    pId: 1,
+    title: "제목",
+    writer: "작성자1",
+    content: "내용",
+    contentMd: "내용",
+    preText: "내용",
+    originalFileName: "https://media.vlpt.us/images/pyt4105/post/f26cfe50-f7d2-4c0c-a139-9b194bf1b481/알고.png?w=768",
+    tags: {tagName: ["asdffasfa", "dfa", "adsf"]},
+    createdAt: moment().format("YYYY년 M월 D일"),
+    modifiedAt: "2021-07-09T17:35:00",
+    countReply: 3
+};
+
 
 const CardContainer = styled.div`
     padding-bottom: 4rem;

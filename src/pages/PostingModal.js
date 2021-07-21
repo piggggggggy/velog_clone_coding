@@ -94,7 +94,7 @@ const PostingModal = (props) => {
               </RightBody>
               <RightFooter>
                 <button onClick={Close} sytle={{backgroundColor: "#868e96"}}>취소</button>
-                <button style={{marginLeft: "0.875rem", backgroundColor: "#12b886"}}>출간하기</button>
+                <button onClick={()=>{createPost()}} style={{marginLeft: "0.875rem", backgroundColor: "#12b886"}}>출간하기</button>
               </RightFooter>
             </RightContent>
           </div>

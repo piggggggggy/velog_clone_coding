@@ -1,10 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as postActions } from "../redux/modules/post";
 
 import NameCard from "./NameCard";
 import PostingCard from "./PostingCard";
 
 const PostingBody = (props) => {
+    const dispatch = useDispatch();
+    const memberId = useSelector((state) => state.user.user.memberId);
+    const post_list = useSelector((state) => state.post.list);
+
+    React.useEffect = () => {
+        dispatch(postActions.setPostDB(memberId));
+    };
+
+
 
     return (
         <React.Fragment>
@@ -27,9 +38,9 @@ const PostingBody = (props) => {
                             <div>
                                 <svg width="17" height="17" viewBox="0 0 17 17">
                                     <path 
-                                    fill-rule="evenodd" 
+                                    fillRule="evenodd" 
                                     d="M13.66 7.36a6.3 6.3 0 1 1-12.598 0 6.3 6.3 0 0 1 12.598 0zm-1.73 5.772a7.36 7.36 0 1 1 1.201-1.201l3.636 3.635c.31.31.31.815 0 1.126l-.075.075a.796.796 0 0 1-1.126 0l-3.636-3.635z"
-                                    clip-rule="evenodd"></path>
+                                    clipRule="evenodd"></path>
                                 </svg>
                                 <input placeholder="검색어를 입력하세요"/>
                             </div>
@@ -193,7 +204,12 @@ const PostingBody = (props) => {
                     </TagList>
                     <CardList>
                         <div>
-                            <PostingCard/>
+                            {post_list.map((p, idx) => {
+                                return (
+                                    <PostingCard key={idx} {...p}/>
+                                )
+                            })}
+                            
                         </div>
                     </CardList>
                 </div>

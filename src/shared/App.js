@@ -16,8 +16,8 @@ const App = () => {
       <GlobalStyles />
       <BrowserRouter history={history}>
         <Route path="/" exact component={Main} />
-        <Route path="/posting" exact component={Posting} />
-        <Route path="/posting/:pId" exact component={Detail} />
+        <Route path="/posting/:mId" exact component={Posting} />
+        <Route path="/posting/detail/:pId" exact component={Detail} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/write" exact component={Write} />
         <Route path="/write/:pId" exact component={Write} />

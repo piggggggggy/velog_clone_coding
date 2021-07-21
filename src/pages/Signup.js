@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useRef } from "react";
@@ -8,10 +8,27 @@ const Signup = (props) => {
     const dispatch = useDispatch();
     const {history} = props;
 
+    const [alert, setAlert] = useState(true);
     const mName = useRef();
     const email = useRef();
     const pwd = useRef();
     const pwdCheck = useRef();
+    
+    const alertRed = () => {
+        if (mName.current.value === "") {
+            return (
+                <AlertText>"이름을 입력하세요."</AlertText>
+            )
+        } else if (email.current.value === "") {
+            return (
+                <AlertText>"아이디는 3~16자의 알파벳,숫자,혹은 - _ 으로 이루어져야 합니다."</AlertText>
+            )
+        } else if (pwd.current.value !== pwdCheck.current.value) {
+            return (
+                <AlertText>"비밀번호가 일치하지 않아요!"</AlertText>
+            )
+        };
+    };
 
     const signUp = () => {
         let data = {
@@ -20,20 +37,21 @@ const Signup = (props) => {
             pwd: pwd.current.value,
             pwdCheck: pwdCheck.current.value,
         };
+        console.log(data);
         if (mName.current.value === "") {
-            is_wrong = true;
-            alertText = "이름을 입력해주세요.";
+            setAlert(false)
+            return;
         } else if (email.current.value === "") {
-            is_wrong = true;
-            alertText = "아이디는 3~16자의 알파벳,숫자,혹은 - _ 으로 이루어져야 합니다.";
-        } else if (pwd.current.value === "")
-        dispatch(userActions.registerDB(data));
-        history.pushState('/');
+            setAlert(false)
+            return;
+        } else if (pwd.current.value !== pwdCheck.current.value) {
+            setAlert(false)
+            return;
+        } else{
+            setAlert(true)
+            dispatch(userActions.registerDB(data));
+        };
     };
-
-    let is_wrong = false;
-    let alertText = ""
-
 
     return (
         <React.Fragment>
@@ -95,9 +113,9 @@ const Signup = (props) => {
 
                         <ButtonContent>
                             <div>
-                                {is_wrong? <AlertText>alertText</AlertText>:''}
+                                {!alert? alertRed():''}
                                 <Button onClick={()=>{history.replace('/')}} style={{ background: "#e9ecef", color: "#495057" }}>취소</Button>
-                                <Button onClick={()=>{history.push('/')}} style={{ background: "#12b886", color: "#ffffff", marginLeft: "1rem" }}>등록</Button>
+                                <Button onClick={()=>{signUp()}} style={{ background: "#12b886", color: "#ffffff", marginLeft: "1rem" }}>등록</Button>
                             </div>
                         </ButtonContent>
 
