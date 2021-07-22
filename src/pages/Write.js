@@ -68,7 +68,7 @@ const Write = (props) => {
       contentMd: contentsMd,
       previewText: postIntro,
       originalFileName: "asdf",
-      tags: { tagname: [tag] },
+      tagList: { stringTagName: [tag] },
     };
 
     

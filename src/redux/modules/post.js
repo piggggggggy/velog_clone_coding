@@ -122,7 +122,7 @@ const editPostDB =
         contentMd: edit.contentsMd,
         previewText: edit.postIntro,
         originalFileName: edit.originalFileName,
-        tags: edit.tags,
+        tagList: edit.tagList,
       })
       .then((res) => {
         console.log(res);

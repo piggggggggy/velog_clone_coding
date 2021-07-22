@@ -41,6 +41,7 @@ const CommentBody = (props) => {
     console.log(cmt);
     dispatch(commentActions.addCommentDB(postId, cmt));
   };
+  
   return (
     <React.Fragment>
 
