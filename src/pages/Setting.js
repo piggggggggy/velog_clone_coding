@@ -18,8 +18,13 @@ const Setting = (props) => {
                 <SectionHead>
                     <ImageArea>
                         <img src={user.profileImg}/>
+                        <ImgUrl>
+                          <div>
+                            <input placeholder="이미지 URL 입력!"></input>
+                          </div>
+                        </ImgUrl>
                         <ElButton style={{ backgroundColor: "#12b886", color: "white" }}>이미지 업로드</ElButton>
-                        <ElButton style={{ backgroundColor: "white", color: "#12b886" }}>이미지 제거</ElButton>
+                        {/* <ElButton style={{ backgroundColor: "white", color: "#12b886" }}>이미지 제거</ElButton> */}
                     </ImageArea>
                     <InfoArea>
                         <h2>{user.nickName}</h2>
@@ -99,7 +104,7 @@ const Setting = (props) => {
                         <Explain>회원 인증 또는 시스템에서 발송하는 이메일을 수신하는 주소입니다.</Explain>
                     </div>
 
-                    <div style={{borderTop: "1px solid #e9ecef"}}>
+                    {/* <div style={{borderTop: "1px solid #e9ecef"}}>
                         <div>
                             <div>
                                 <h3>이메일 수신 설정</h3>
@@ -120,7 +125,7 @@ const Setting = (props) => {
                                 </Content>
                             </ContentBlock>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div style={{borderTop: "1px solid #e9ecef"}}>
                         <div>
@@ -389,6 +394,31 @@ const Toggle = styled.div`
         color: #495057;
         line-height: 1.5;
     }
+`;
+
+const ImgUrl = styled.div`
+  width: 10rem;
+  color: #212529;
+
+  & > div {
+    display: flex;
+    background: white;
+    box-shadow: #00000008;
+    padding: 0.5rem 0.875rem;
+    line-height: 1.5;
+    color: #212529;
+
+    & > input {
+      font-size: 1rem;
+      background: none;
+      outline: none;
+      flex: 1 1 0%;
+      border: none;
+      padding: 0px;
+      line-height: 1.5;
+      color: #343a40;
+    }
+  }
 `;
 
 export default Setting;

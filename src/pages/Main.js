@@ -7,15 +7,7 @@ import SharedHeader from "../shared/SharedHeader";
 
 
 const Main = (props) => {
-    const dispatch = useDispatch();
-    const all_list = useSelector((state) => state.allPost.list);
-
-    React.useEffect(() => {
-        if (all_list.length !== 0 ) {
-            dispatch(recentActions.getRecentDB());
-        }
-    },[])
-
+    
     return (
         <React.Fragment>
             <SharedHeader/>

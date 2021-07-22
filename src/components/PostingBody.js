@@ -27,6 +27,14 @@ const PostingBody = (props) => {
         )
     }
 
+    // let _post_list = post_list;
+
+    // const filter = (x) => {
+    //     const _post_list = post_list.filter((p, idx) => {
+    //         if(x === p.tags.)
+    //     })
+    // }
+    
 
 
     return (
