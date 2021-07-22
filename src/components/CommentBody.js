@@ -13,11 +13,11 @@ const CommentBody = (props) => {
   const postId = props.postId;
   const dispatch = useDispatch();
 
-  // React.useEffect(() => {
-  //   if(comment_list.length !== 0){
-  //     dispatch(commentActions.setCommentDB(postId));
-  //   }
-  // },[])
+  React.useEffect(() => {
+    if(comment_list.length !== 0){
+      dispatch(commentActions.setCommentDB(postId));
+    }
+  },[])
 
   const [comment, setComment] = useState();
   const changeComment = (e) => {
@@ -52,11 +52,11 @@ const CommentBody = (props) => {
             </div>
           </InputBox>
           <CommentContainer>
-            {/* {comment_list.map((c, idx) => {
+            {comment_list.map((c, idx) => {
               return (
                 <Comment key={idx} {...c}/>
               )
-            })} */}
+            })}
           </CommentContainer>
         </ContentsContainer>
 

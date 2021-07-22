@@ -3,49 +3,6 @@ import React from "react";
 import styled from "styled-components";
 
 const MainCard = (props) => {
-  // return (
-  //   <React.Fragment>
-  //     <CardWrap>
-  //       <img src="https://cdn.pixabay.com/photo/2021/07/13/18/58/coffee-6464307_960_720.jpg" />
-  //       <CardInfo>
-  //         <ContentsBox>
-  //           <h4>프론트엔드 면접 문제 2탄 ⭐️</h4>
-  //           <p>
-  //             지난번엔 HTML편이었는데 이번엔 CSS 관련 문제들로 정리해봤습니다.
-  //             오늘도 프론트엔드 화이팅!
-  //           </p>
-  //           <SubInfo>
-  //             <span>2021년 7월 9일</span>
-  //             <span>·</span>
-  //             <span>0개의 댓글</span>
-  //           </SubInfo>
-  //         </ContentsBox>
-  //         <UserInfoBox>
-  //           {/* 유저 정보 div */}
-  //           <div>
-  //             <img src="https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_960_720.jpg" />
-
-  //             <p>by</p>
-  //             <p style={{ fontWeight: 800 }}>JongVeloper</p>
-  //           </div>
-  //           {/* 유저 정보 div */}
-  //           <div>
-  //             <LikeInfo>
-  //               <svg width="24" height="24" viewBox="0 0 24 24">
-  //                 <path
-  //                   fill="currentColor"
-  //                   d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"
-  //                 ></path>
-  //               </svg>{" "}
-  //               <p>60</p>
-  //             </LikeInfo>
-  //           </div>
-  //         </UserInfoBox>
-  //       </CardInfo>
-  //     </CardWrap>
-  //   </React.Fragment>
-  // );
-
   return (
     <Card>
       <a>

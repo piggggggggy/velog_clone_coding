@@ -11,7 +11,7 @@ const DETAIL_POST = "post/DETIL_POST";
 
 // action creators
 
-const setPost = createAction(SET_POST, (post_list) => ({ post_list }));
+const setPost = createAction(SET_POST, (post_list, tag_list, member_info) => ({ post_list, tag_list, member_info }));
 const addPost = createAction(ADD_POST, (post) => ({ post }));
 const editPost = createAction(EDIT_POST, (postId, post) => ({ postId, post }));
 const deletePost = createAction(DELETE_POST, (postId) => ({ postId }));
@@ -21,6 +21,7 @@ const detailPost = createAction(DETAIL_POST, (postId) => ({ postId }));
 const initialState = {
   main_list: [],
   list: [],
+  tags: [],
   user: {},
   post: null,
 };
@@ -74,9 +75,12 @@ const setPostDB = (memberId) =>
       .then((res) => {
         console.log(res)
         //   수정 필요함
-        return;
-        let post_list = res.data.post;
-        dispatch(setPost(post_list));
+        let post_list = res.data.positingResponseDto;
+        let tag_list = res.data.tagList;
+        let member_info = res.data.memberResponseDto;
+
+
+        dispatch(setPost(post_list, tag_list, member_info));
         //   수정 필요함
       })
       .catch((err) => {
@@ -86,8 +90,7 @@ const setPostDB = (memberId) =>
   };
 
 // 게시물 삭제
-const deletePostDB =
-  (postId) =>
+const deletePostDB = (postId) =>
   async (dispatch, getState, { history }) => {
     await api
       .delete(`/api/posting/${postId}`)
@@ -104,8 +107,7 @@ const deletePostDB =
   };
 
 // 게시물 수정
-const editPostDB =
-  (postId = null, edit = {}) =>
+const editPostDB = (postId = null, edit = {}) =>
   async (dispatch, getState, { history }) => {
     await api
       .put(`/api/posting/${postId}`, {
@@ -127,8 +129,7 @@ const editPostDB =
   };
 
 // 상세 게시물 조회
-const detailPostDB =
-  (postId = "") =>
+const detailPostDB = (postId = "") =>
   async (dispatch, getState, { history }) => {
     await api.get(`/api/posting/detail/${postId}`).then((res) => {
       console.log(res);
@@ -143,6 +144,8 @@ export default handleActions(
     [SET_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.list = action.payload.post_list;
+        draft.tags = action.payload.tag_list;
+        draft.user = action.payload.member_info;
       }),
 
     [ADD_POST]: (state, action) =>

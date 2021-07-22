@@ -17,53 +17,6 @@ const DetailBody = (props) => {
 
   return (
     <React.Fragment>
-      {/* <DetailContainer>
-        <HeadContainer>
-          <Title>{post.title}</Title>
-          <DetailInfo>
-            <UserInfo>
-              <span>
-                <a href="">{post.memberId}</a>
-              </span>
-              <span>·</span>
-
-              <span>
-                {post.modifedAt
-                  ? moment(post.modifedAt).format("YYYY년 MM월 DD일")
-                  : moment(post.createdAt).format("YYYY년 MM월 DD일")}
-              </span>
-            </UserInfo>
-            <LikeInfo>
-              <button>
-                <svg viewBox="0 0 24 24">
-                  <path d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path>
-                </svg>
-                <span>77</span>
-              </button>
-            </LikeInfo>
-          </DetailInfo>
-          <TagBox>
-            <Tag>CSS</Tag>
-            <Tag>면접</Tag>
-          </TagBox>
-          <ListBox>
-            <h2>FE-Interview</h2>
-            <svg viewBox="0 0 32 48">
-              <path
-                fill="#12B886"
-                d="M32 0H0v48h.163l16-16L32 47.836V0z"
-              ></path>
-            </svg>
-          </ListBox>
-          <HeaderImage src="https://media.vlpt.us/images/cjy0029/post/75a71df9-605b-4e6b-94ca-e9a7310edacc/%E1%84%83%E1%85%A1%E1%84%8B%E1%85%AE%E1%86%AB%E1%84%85%E1%85%A9%E1%84%83%E1%85%B3.png" />
-        </HeadContainer>
-        <PostBox>
-          <Contents>
-            <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
-          </Contents>
-        </PostBox>
-      </DetailContainer> */}
-
       <HeaderContainer>
         <div>
           <h1>타이틀</h1>

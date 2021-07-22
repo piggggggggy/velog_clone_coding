@@ -5,8 +5,8 @@ import { actionCreators as commentAcitons } from "../redux/modules/comment";
 import moment from "moment";
 
 const Comment = (props) => {
+  const memberId = localStorage.getItem('memberId');
 
- 
   // const dispatch = useDispatch();
   // useEffect(() => {
   //   dispatch(commentAcitons.setCommentDB(postId));
@@ -30,7 +30,7 @@ const Comment = (props) => {
             </a>
             <div>
               <UserName>
-                <a>닉네임</a>
+                <a>{props.nickName}</a>
               </UserName>
               <Date>일 전</Date>
             </div>
@@ -46,60 +46,22 @@ const Comment = (props) => {
             <div>
               <div>
                 <p>
-                  내용
+                  {props.content}
                 </p>
               </div>
             </div>
           </div>
         </CommentBody>
-        {/* <CommentContetsBox>
-          <CommentBox>
-            <CommentUser>
-              <a href="">
-                <img src="https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_960_720.jpg" />
-              </a>
-              <CommentUserInfo>
-                <UserNameBox>
-                  <a href="">{nickName}</a>
-                </UserNameBox>
-                <div>
-                  {modfiedAt !== createdAt
-                    ? moment(modfiedAt).format("YYYY년 MM월 DD일")
-                    : moment(createdAt).format("YYYY년 MM월 DD일")}
-                </div>
-              </CommentUserInfo>
-            </CommentUser>
-            {nickName === memberId && (
-              <div class="buttons">
-                <span onClick={editComment}>수정</span>
-                <span onClick={deleteComment}>삭제</span>
-              </div>
-            )}
-          </CommentBox>
-          <ContentsDesc>
-            <p>{comment}</p>
-            <ReplyBox>
-              <div>
-                <svg viewBox="0 0 12 12">
-                  <path
-                    fill="currentColor"
-                    d="M5.5 2.5h1v3h3v1h-3v3h-1v-3h-3v-1h3v-3z"
-                  ></path>
-                  <path
-                    fill="currentColor"
-                    fillRule="evenodd"
-                    d="M1 0a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm10 1H1v10h10V1z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <span>0개의 답글</span>
-              </div>
-            </ReplyBox>
-          </ContentsDesc>
-        </CommentContetsBox> */}
       </CommentsContainer>
     </React.Fragment>
   );
+};
+
+Comment.defaultProps = {
+  memberId: 1,
+  nickName: "가짜",
+  createdAt: "2021-07-22",
+  content: "할수있다................할수있다....................할수있다............."
 };
 
 const CommentsContainer = styled.div`
