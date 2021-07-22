@@ -1,11 +1,30 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as recentActions } from "../redux/modules/allPost";
+
 
 import MainCard from "./MainCard";
 
 const MainBody = (props) => {
+
+
+  const dispatch = useDispatch();
   const all_list = useSelector((state) => state.allPost.list);
+
+  React.useEffect(() => {
+      // if (all_list.length !== 0 ) {
+      //     dispatch(recentActions.getRecentDB());
+      // }
+      dispatch(recentActions.getRecentDB());
+
+  },[])
+
+  if (!all_list) {
+    return (
+      <div>기다려..</div>
+    )
+  }
 
   return (
     <React.Fragment>
@@ -52,6 +71,7 @@ const MainBody = (props) => {
 };
 
 const Container = styled.div`
+  max-width: 90%;
   width: 1728px;
   margin-left: auto;
   margin-right: auto;

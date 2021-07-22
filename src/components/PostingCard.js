@@ -4,31 +4,31 @@ import moment from "moment";
 import { history } from "../redux/configStore";
 
 const PostingCard = (props) => {
-    const post = props.postingResponseDto;
+    console.log(props);
 
     return (
         <React.Fragment>
-            <CardContainer onClick={()=>{history.push(`/posting/detail/${post.postId}`)}}>
+            <CardContainer onClick={()=>{history.push(`/posting/detail/${props.postId}`)}}>
                 <a>
                     <div>
-                        <img></img>
+                        <img src={props.imgUrl}/>
                     </div>
                 </a>
                 <a>
-                    <h2>title</h2>
+                    <h2>{props.title}</h2>
                 </a>
-                <p>previewText</p>
+                <p>{props.previewText}</p>
                 <TagContent>
-                    {/* {props.tags.tagname.map((t, idx) => {
+                    {props.tags.map((t, idx) => {
                         return(
-                            <a key={idx}>{t}</a>
+                            <a key={idx}>{t.tagName}</a>
                         )
-                    })} */}
+                    })}
                 </TagContent>
                 <DateContent>
-                    <span>날짜</span>
+                    {/* <span>{props.createdAt.format("yyyy년 M일 d일")}</span> */}
                     <div>·</div>
-                    <span>개의 댓글</span>
+                    {/* <span>개의 댓글</span> */}
                 </DateContent>
             </CardContainer>
         </React.Fragment>

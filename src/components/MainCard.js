@@ -1,26 +1,26 @@
-import { black } from "chalk";
 import React from "react";
 import styled from "styled-components";
+import { history } from "../redux/configStore";
 
 const MainCard = (props) => {
   return (
-    <Card>
+    <Card onClick={()=>{history.push(`/posting/detail/${props.postId}`)}}>
       <a>
         <div>
-          <img src="https://media.vlpt.us/images/dongyi/post/b3aea738-d3bd-447b-a22d-4652e13eba7d/0712_코딩몬스터tv---인터뷰-썸네일 (2).jpg?w=640"></img>
+          <img src={props.imgUrl}></img>
         </div>
       </a>
       <ContentPart>
         <a>
-          <h4>스타트업 4년차에 억대연봉 개발자가 된 야간대 졸업생</h4>
+          <h4>{props.title}스타트업 4년차에 억대연봉 개발자가 된 야간대 졸업생</h4>
           <div>
-            <p>4년차에 억대 연봉을 달성한 스타트업 개발자 삼촌님에게 듣는 현실적인 자기성장 조언</p>
+            <p>{props.preview}4년차에 억대 연봉을 달성한 스타트업 개발자 삼촌님에게 듣는 현실적인 자기성장 조언</p>
           </div>
         </a>
         <div>
-          <span>2021년 7월 14일</span>
+          {/* <span>{props.createdAt.format("yyyy년 m월 d일")}2021년 7월 14일</span> */}
           <span style={{marginLeft: "0.25rem", marginRight: "0.25rem"}}>·</span>
-          <span>0개의 댓글</span>
+          <span>개의 댓글</span>
         </div>
       </ContentPart>
       <CardFooter>
@@ -28,19 +28,28 @@ const MainCard = (props) => {
           <img src="https://media.vlpt.us/images/dongyi/profile/1d42f7e3-42c3-4b65-8c64-e6169c437565/cm-fb-profile.png?w=120"></img>
           <span>
             by  
-            <b> 진태</b>
+            <b> {props.nickName}</b>
           </span>
         </a>
         <div>
           <svg width="24" height="24" viewBox="0 0 24 24">
             <path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path>
           </svg>
-          999
+          {props.likeCount}
         </div>
       </CardFooter>
 
     </Card>
   )
+};
+
+MainCard.defaultProps = {
+  postId: 1,
+  title: "테스트 테스트",
+  likeCount: 0,
+  previewText: "테스트... 제발 잘되길..",
+  imgUrl: "https://media.vlpt.us/images/dongyi/post/b3aea738-d3bd-447b-a22d-4652e13eba7d/0712_코딩몬스터tv---인터뷰-썸네일 (2).jpg?w=640",
+  createAt: "2021-07-22T09:44:11"
 };
 
 const Card = styled.div`

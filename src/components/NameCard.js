@@ -1,30 +1,29 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
 
 const NameCard = (props) => {
-    const user = useSelector((state) => state.user.user);
-    ///// 새로운 요청을 만들어야함 
+
+
     return (
         <React.Fragment>
             <CardContainer>
                 <CardBody>
                     <a>
-                        <img src={user.profileImg}/>
+                        <img src={props.profileImg}/>
                     </a>
                     <div>
                         <Name>
-                            <a>{user.nickName}</a>    
+                            <a>{props.nickName}</a>    
                         </Name>
                         <MComment>
-                            {user.comment}
+                            {props.comment}
                         </MComment>
                     </div>
                 </CardBody>
                 <Line/>
                 <CardFooter>
-                    {user.github ?
-                    <a href={user.github}>
+                    {props.github ?
+                    <a href={props.github}>
                         <svg>
                             <mask id="github" width="20" height="20" x="0" y="0" maskUnits="userSpaceOnUse">
                                 <path fill="#ffffff" fillRule="evenodd" 
@@ -36,7 +35,7 @@ const NameCard = (props) => {
                             </g>
                         </svg> 
                     </a> : null }
-                    {user.email ?
+                    {props.email ?
                     <a style={{ marginLeft: "1rem" }}>
                         <svg>
                             <path 

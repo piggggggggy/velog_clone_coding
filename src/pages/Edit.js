@@ -6,19 +6,19 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
 
-const Write = (props) => {
+const Edit = (props) => {
   const dispatch = useDispatch();
   const memberId = localStorage.getItem('memberId');
-  // const postId = props.match.params.postId;
+  const postId = props.match.params.postId;
   const { history } = props;
 
-  // const post = useSelector((state) => state.post.post);
+  const post = useSelector((state) => state.post.post);
   
-  // React.useEffect(() => {
-  //   if(postId) {
-  //     dispatch(postActions.detailPostDB(postId));
-  //   }
-  // });
+  React.useEffect(() => {
+    if(postId) {
+      dispatch(postActions.detailPostDB(postId));
+    }
+  });
 
 
 
@@ -71,7 +71,7 @@ const Write = (props) => {
       contentMd: contentsMd,
       previewText: postIntro,
       originalFileName: '',
-      tagList: { stringTagName: taglist },
+      tags: { tagname: taglist },
     };
 
     console.log(post);
@@ -712,4 +712,4 @@ const RightFooter = styled.div`
   }
 `;
 
-export default Write;
+export default Edit;

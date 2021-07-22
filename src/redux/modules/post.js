@@ -19,11 +19,12 @@ const detailPost = createAction(DETAIL_POST, (postId) => ({ postId }));
 
 //initialState
 const initialState = {
-  main_list: [],
+  // main_list: [],
   list: [],
   tags: [],
   user: {},
   post: null,
+  comment: null,
 };
 
 // default data
@@ -50,7 +51,7 @@ const addPostDB =
         contentMd: post.contentMd,
         previewText: post.previewText,
         originalFileName: post.originalFileName,
-        tags: post.tags
+        tagList: post.tagList
       })
       .then((res) => {
         console.log(res);
@@ -64,9 +65,9 @@ const addPostDB =
       });
   };
 
-// 전체 게시물 조회
 
 
+  // 전체 게시물 조회
 
 const setPostDB = (memberId) => 
   async (dispatch, getState, { history }) => {
@@ -75,7 +76,7 @@ const setPostDB = (memberId) =>
       .then((res) => {
         console.log(res)
         //   수정 필요함
-        let post_list = res.data.positingResponseDto;
+        let post_list = res.data.postingResponseDto;
         let tag_list = res.data.tagList;
         let member_info = res.data.memberResponseDto;
 
@@ -166,6 +167,7 @@ export default handleActions(
     [DETAIL_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.post = action.payload.postId;
+        draft.comment = action.payload.postId;
       }),
 
     [EDIT_POST]: (state, action) =>

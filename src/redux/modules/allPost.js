@@ -25,7 +25,7 @@ const initialState = {
 const getRecentDB = () =>
     async (dispatch, {history}) => {
         await api
-            .get('/api/recent')
+            .get('/api/posting')
             .then((res) => {
                 console.log(res);
                 

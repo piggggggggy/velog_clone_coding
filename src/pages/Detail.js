@@ -12,24 +12,22 @@ import NameCard from "../components/NameCard";
 
 const Detail = (props) => {
   const postId = props.match.params.postId;
-  const commentId = props.match.params.postId;
-  console.log(commentId);
   console.log(postId);
   const dispatch = useDispatch();
   const detailPost = useSelector((state) => state.post.main_list);
-  const { writer } = detailPost;
+  const comment_list = useSelector((state) => state.post.comments);
   
   useEffect(() => {
     dispatch(postActions.detailPostDB(postId));
-    dispatch(commentActions.setCommentDB(postId));
+    // dispatch(commentActions.setCommentDB(postId));
   }, []);
 
   return (
     <React.Fragment>
       <SharedHeader />
-      <DetailBody />
+      <DetailBody {...detailPost}/>
       <NameCard/>
-      <CommentBody postId={postId} />
+      <CommentBody/>
     </React.Fragment>
   );
 };

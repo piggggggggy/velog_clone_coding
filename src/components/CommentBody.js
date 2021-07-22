@@ -13,13 +13,19 @@ const CommentBody = (props) => {
   const postId = props.postId;
   const dispatch = useDispatch();
 
+  const [comment, setComment] = useState();
+
   React.useEffect(() => {
     if(comment_list.length !== 0){
       dispatch(commentActions.setCommentDB(postId));
     }
   },[])
 
-  const [comment, setComment] = useState();
+  if (!comment_list) {
+    return (<div>기다려..</div>)
+  }
+
+  
   const changeComment = (e) => {
     setComment(e.target.value);
   };

@@ -10,13 +10,22 @@ const PostingBody = (props) => {
     const dispatch = useDispatch();
     const memberId = props.memberId;
     const post_list = useSelector((state) => state.post.list);
+    const tag_list = useSelector((state) => state.post.tags);
+    const user_info = useSelector((state) => state.post.user);
 
     React.useEffect(() => {
         console.log(memberId);
-        if (post_list.length !== 0) {
-            dispatch(postActions.setPostDB(memberId));
-        }
+        // if (post_list.length !== 0) {
+        //     dispatch(postActions.setPostDB(memberId));
+        // }
+        dispatch(postActions.setPostDB(memberId));
     },[]);
+
+    if (!post_list) {
+        return (
+            <div>기다려....</div>
+        )
+    }
 
 
 
@@ -24,7 +33,7 @@ const PostingBody = (props) => {
         <React.Fragment>
             <PostingContainer>
 
-                <NameCard/>
+                <NameCard {...user_info}/>
 
                 <NavigationBar>
                     <div>
@@ -60,106 +69,26 @@ const PostingBody = (props) => {
                                         <li style={{color:"#20c997", fontWeight:"bold", marginTop:"0px"}}>
                                             <a href="/@pyt4105">전체보기</a>
                                             <span>
-                                                (39)
+                                                {`(${post_list.length})`}
                                             </span>
                                         </li>
 
-                                        <li>
-                                            <a href="/@pyt4105">TIL</a>
-                                            <span>
-                                                (17)
-                                            </span>
-                                        </li>
-
-                                        <li>
-                                            <a href="/@pyt4105">알고리즘</a>
-                                            <span>
-                                                (15)
-                                            </span>
-                                        </li>
-
-                                        <li>
-                                            <a href="/@pyt4105">코딩테스트</a>
-                                            <span>
-                                                (11)
-                                            </span>
-                                        </li>
-
-                                        <li>
-                                            <a href="/@pyt4105">프로그래머스</a>
-                                            <span>
-                                                (8)
-                                            </span>
-                                        </li>
-                                        
-                                        <li>
-                                            <a href="/@pyt4105">python</a>
-                                            <span>
-                                                (6)
-                                            </span>
-                                        </li>
-
-                                        <li>
-                                            <a href="/@pyt4105">리액트</a>
-                                            <span>
-                                                (6)
-                                            </span>
-                                        </li>
-
-                                        <li>
-                                            <a href="/@pyt4105">항해99</a>
-                                            <span>
-                                                (5)
-                                            </span>
-                                        </li>
-
-                                        <li>
-                                            <a href="/@pyt4105">WIL</a>
-                                            <span>
-                                                (4)
-                                            </span>
-                                        </li>
-
-                                        <li>
-                                            <a href="/@pyt4105">백준</a>
-                                            <span>
-                                                (2)
-                                            </span>
-                                        </li>
-
-                                        <li>
-                                            <a href="/@pyt4105">잡지식과 용어모음</a>
-                                            <span>
-                                                (2)
-                                            </span>
-                                        </li>
-
-                                        <li>
-                                            <a href="/@pyt4105">JavaScript</a>
-                                            <span>
-                                                (2)
-                                            </span>
-                                        </li>
-
-                                        <li>
-                                            <a href="/@pyt4105">Flask</a>
-                                            <span>
-                                                (1)
-                                            </span>
-                                        </li>
-
-                                        <li>
-                                            <a href="/@pyt4105">git</a>
-                                            <span>
-                                                (1)
-                                            </span>
-                                        </li>
+                                        {tag_list? tag_list.map((t, idx) =>{
+                                            return (
+                                                <li key={idx}>
+                                                    <a href="/@pyt4105">{t.tagName}</a>
+                                                    <span>
+                                                        {`(${t.count})`}
+                                                    </span>
+                                                </li>
+                                            )
+                                        }) : null}
 
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <div>
+                        {/* <div>
                             <a href="/@pyt4105">
                                 <span></span>
                             </a>
@@ -203,7 +132,7 @@ const PostingBody = (props) => {
                                 <span></span>
                             </a>
 
-                        </div>
+                        </div> */}
                     </TagList>
                     <CardList>
                         <div>

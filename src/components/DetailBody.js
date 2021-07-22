@@ -19,7 +19,7 @@ const DetailBody = (props) => {
     <React.Fragment>
       <HeaderContainer>
         <div>
-          <h1>타이틀</h1>
+          <h1></h1>
           <BtnBox>
             <button>수정</button>
             <button style={{marginLeft: "0.5rem"}}>삭제</button>
