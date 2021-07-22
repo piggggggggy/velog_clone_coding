@@ -15,11 +15,11 @@ const Comment = (props) => {
     commentId,
   } = props;
   console.log(comments);
- 
+
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(commentAcitons.setCommentDB(postId));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(commentAcitons.setCommentDB(postId));
+  // }, []);
 
   const deleteComment = () => {
     dispatch(commentAcitons.deleteCmtDB(commentId));

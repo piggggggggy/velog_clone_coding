@@ -12,13 +12,12 @@ const Write = (props) => {
   const dispatch = useDispatch();
   const { history } = props;
   const editorRef = useRef();
-  const TagList = {};
-  console.log(TagList);
 
   const [title, setTitle] = useState();
   // const [contentsMd, setMd] = useState();
   const [tag, setTag] = useState();
-  // console.log(tag);
+  const TagList = [];
+  console.log(TagList);
   const [postIntro, setIntro] = useState();
 
   const changeTitle = (e) => {
@@ -212,11 +211,9 @@ const Write = (props) => {
               onKeyPress={(e) => {
                 if (e.key === "Enter") {
                   const newTag = document.createElement("div");
+                  newTag.id = "tag";
                   const newTagName = document.createTextNode(e.target.value);
                   newTag.appendChild(newTagName);
-                  TagList[tag] = tag;
-                  // console.log(newTagName);
-                  // console.log(TagList);
                   document.querySelector(TagContainer).prepend(newTag);
                   document.querySelector(Input).value = "";
                 }
@@ -230,7 +227,7 @@ const Write = (props) => {
           // onChange={changeMd}
           initialValue=""
           previewStyle="vertical"
-          height="82vh"
+          height="100vh"
           initialEditType="markdown"
           previewHighlight={false}
           placeholder="당신의 이야기를 적어보세요..."
@@ -256,6 +253,7 @@ const PostContainer = styled.div`
   height: 94vh;
 `;
 const Footer = styled.div`
+  position: fixed;
   padding-left: 1rem;
   padding-right: 1rem;
   height: 4rem;
@@ -266,6 +264,7 @@ const Footer = styled.div`
   justify-content: space-between;
   -webkit-box-align: center;
   align-items: center;
+  z-index: 200;
 `;
 
 const PostingButtonBox = styled.div`
