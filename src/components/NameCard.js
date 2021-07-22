@@ -52,8 +52,11 @@ const NameCard = (props) => {
 }
 
 const CardContainer = styled.div`
+    margin: auto;
     margin-top: 5.625rem;
     color: #212529;
+    width: 768px;
+    
 `;
 
 const CardBody = styled.div`

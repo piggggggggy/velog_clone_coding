@@ -62,8 +62,8 @@ const addCommentDB =
       .post(`/api/comment/${postId}`, comment)
       .then((res) => {
         console.log(res);
-        return;
-        window.alert("댓글 작성 완료!");
+
+        // window.alert("댓글 작성 완료!");
         dispatch(addCmt(comment));
       })
       .catch((err) => {
@@ -114,7 +114,7 @@ export default handleActions(
       }),
     [ADD_CMT]: (state, action) =>
       produce(state, (draft) => {
-        draft.comments.unshift(action.payload.comment_list);
+        draft.comments.unshift(action.payload.comment);
       }),
     [DELETE_CMT]: (state, action) =>
       produce(state, (draft) => {

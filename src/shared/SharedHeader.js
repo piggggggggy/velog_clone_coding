@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 import { history } from "../redux/configStore";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-// import { useParams } from "react-router";
+import _ from "lodash";
+
 import LoginModal from "../components/LoginModal";
-// import { history } from "../redux/configStore";
 
 const SharedHeader = (props) => {
     
@@ -99,6 +99,18 @@ const SharedHeader = (props) => {
     );
 };
 
+const Outline = styled.div`
+    margin-top: 0px;
+    display: block;
+    position: fixed;
+    top: 0px;
+    background: white;
+    width: 100%;
+    z-index: 10;
+    box-shadow: #00000014 0px 0px 8px;
+    color: #212529;
+`;
+
 const Container = styled.div`
     height: 4rem;
     display: flex;
@@ -114,7 +126,7 @@ const HeaderContainer = styled.div`
     -webkit-box-pack: justify;
     justify-content: space-between;
 
-    width: 1728px;
+    /* width: 1728px; */
     margin-left: auto;
     margin-right: auto;
     color: #212529;

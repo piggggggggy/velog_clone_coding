@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import DetailBody from "../components/DetailBody";
-import CommentBody from "../components/CommentBody";
-import Comment from "../components/Comment";
-import SharedHeader from "../shared/SharedHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
+
+import DetailBody from "../components/DetailBody";
+import CommentBody from "../components/CommentBody";
+import SharedHeader from "../shared/SharedHeader";
+import NameCard from "../components/NameCard";
 
 const Detail = (props) => {
   const postId = props.match.params.postId;
@@ -14,15 +15,17 @@ const Detail = (props) => {
   const dispatch = useDispatch();
   const detailPost = useSelector((state) => state.post.main_list);
   const { writer } = detailPost;
+  
   useEffect(() => {
     dispatch(postActions.detailPostDB(postId));
   }, []);
+
   return (
     <React.Fragment>
       <SharedHeader/>
       <DetailBody />
+      <NameCard/>
       <CommentBody postId={postId} />
-      <Comment postId={postId} />
     </React.Fragment>
   );
 };
