@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as commentActions } from "../redux/modules/comment";
+import { actionCreators as commentActions } from "../redux/modules/post";
+import { history } from "../redux/configStore";
 
 import Comment from "./Comment";
 
 const CommentBody = (props) => {
 
-  const comment_list= useSelector((state) => state.comment.comments);
+  const comment_list= useSelector((state) => state.post.comment);
 
   const memberId = localStorage.getItem("memberId");
   const postId = props.postId;
@@ -15,11 +16,11 @@ const CommentBody = (props) => {
 
   const [comment, setComment] = useState();
 
-  React.useEffect(() => {
-    if(comment_list.length !== 0){
-      dispatch(commentActions.setCommentDB(postId));
-    }
-  },[])
+  // React.useEffect(() => {
+  //   if(comment_list.length !== 0){
+  //     dispatch(commentActions.setCommentDB(postId));
+  //   }
+  // },[])
 
   if (!comment_list) {
     return (<div>기다려..</div>)
@@ -37,11 +38,14 @@ const CommentBody = (props) => {
       // status: true,
       content: comment,
       memberId: parseInt(memberId),
+      status: true,
     };
     console.log(cmt);
     dispatch(commentActions.addCommentDB(postId, cmt));
+    history.replace(`/posting/detail/${postId}`);
+    console.log("ㅅㅂ")
   };
-  
+
   return (
     <React.Fragment>
 
@@ -51,7 +55,7 @@ const CommentBody = (props) => {
           <CommentButtonBox>
             <button onClick={registComment}>댓글 작성</button>
           </CommentButtonBox> */}
-          <h4>개의 댓글</h4>
+          <h4>{comment_list.length}개의 댓글</h4>
           <InputBox>
             <textarea onChange={changeComment} placeholder="댓글을 작성하세요"></textarea>
             <div>

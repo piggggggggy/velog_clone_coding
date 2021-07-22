@@ -1,10 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import moment from "moment";
 import { history } from "../redux/configStore";
 
 const PostingCard = (props) => {
     console.log(props);
+    const tag_list = props.tags;
+    if(!tag_list) {
+        return (
+            <div>기다려..</div>
+        )
+    }
+    
 
     return (
         <React.Fragment>
@@ -19,7 +25,7 @@ const PostingCard = (props) => {
                 </a>
                 <p>{props.previewText}</p>
                 <TagContent>
-                    {props.tags.map((t, idx) => {
+                    {tag_list.map((t, idx) => {
                         return(
                             <a key={idx}>{t.tagName}</a>
                         )

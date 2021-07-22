@@ -3,6 +3,15 @@ import styled from "styled-components";
 import { history } from "../redux/configStore";
 
 const MainCard = (props) => {
+
+  const date = props.createdAt.split('-');
+  const day = date[2].split('T');
+  const _date = () => {
+    return(
+      date[0] + "년 " + date[1] + "월 " + day[0] + "일"
+    )
+  }
+
   return (
     <Card onClick={()=>{history.push(`/posting/detail/${props.postId}`)}}>
       <a>
@@ -12,23 +21,23 @@ const MainCard = (props) => {
       </a>
       <ContentPart>
         <a>
-          <h4>{props.title}스타트업 4년차에 억대연봉 개발자가 된 야간대 졸업생</h4>
+          <h4>{props.title}</h4>
           <div>
-            <p>{props.preview}4년차에 억대 연봉을 달성한 스타트업 개발자 삼촌님에게 듣는 현실적인 자기성장 조언</p>
+            <p>{props.previewText}</p>
           </div>
         </a>
         <div>
-          {/* <span>{props.createdAt.format("yyyy년 m월 d일")}2021년 7월 14일</span> */}
+          <span>{_date()}</span>
           <span style={{marginLeft: "0.25rem", marginRight: "0.25rem"}}>·</span>
-          <span>개의 댓글</span>
+          {/* <span>개의 댓글</span> */}
         </div>
       </ContentPart>
       <CardFooter>
         <a>
-          <img src="https://media.vlpt.us/images/dongyi/profile/1d42f7e3-42c3-4b65-8c64-e6169c437565/cm-fb-profile.png?w=120"></img>
+          <img src="https://media.vlpt.us/images/jjunyjjuny/profile/c154920b-b1a4-45e8-9eb1-f0fafb75957c/social.png?w=120"></img>
           <span>
             by  
-            <b> {props.nickName}</b>
+            <b> {props.postingMemberResponseDto.nickName}</b>
           </span>
         </a>
         <div>

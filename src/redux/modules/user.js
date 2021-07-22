@@ -11,7 +11,9 @@ const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
 const LOG_CHECK = "LOG_CHECK";
 // const GET_USER = "GET_USER";
-
+const LOAD_USER = "LOAD_USER";
+const EDIT_USER = "EDIT_USER";
+const WITHDRAW = "WITHDRAW"
 
 // action creator
 
@@ -19,6 +21,10 @@ const setUser = createAction(SET_USER, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const logCheck = createAction(LOG_CHECK, (user) => ({ user }));
 // const getUser = createAction(GET_USER, (user) => ({ user }));
+const load_user = createAction(LOAD_USER, (user) => ({ user }));
+const eidit_user = createAction(EDIT_USER, (user) => ({ user }));
+const withdraw = createAction(WITHDRAW, (user) => ({ user }));
+
 
 
 // initialState
@@ -114,6 +120,51 @@ const logOutDB = () => {
 };
 
 
+// setting load
+const loadUserDB = () => 
+    async (dispatch, getState, {history}) => {
+        await api
+            .get('/api/member/setting')
+            .then((res) => {
+                console.log(res);
+
+            }).catch((err) => {
+                console.log(err, "에러남")
+            });
+    };
+
+
+// setting edit
+const editUserDB = () => 
+    async (dispatch, getState, {history}) => {
+        await api
+            .put(`/api/member/setting`)
+            .then((res) => {
+                console.log(res);
+
+            }).catch((err) => {
+                console.log(err, "에러남")
+            });
+    };
+
+
+// withdraw
+const withdrawDB = () => 
+    async (dispatch, getState, {history}) => {
+        await api
+            .put('/api/member/withdrawal')
+            .then((res) => {
+                console.log(res);
+
+            }).catch((err) => {
+                console.log(err, "에러남")
+            });
+    };
+
+    
+
+
+
 
 // reducer
 export default handleActions(
@@ -140,6 +191,20 @@ export default handleActions(
             draft.is_login = true;
         }),
 
+        [LOAD_USER]: (state, action) => 
+        produce(state, (draft) => {
+            draft.user = action.payload.user;
+        }),
+
+        [EDIT_USER]: (state, action) => 
+        produce(state, (draft) => {
+            draft.user = action.payload.user;
+        }),
+
+        [WITHDRAW]: (state, action) => 
+        produce(state, (draft) => {
+            draft.user = {};
+        }),
 
     },
     initialState
@@ -150,7 +215,12 @@ const actionCreators = {
     logInDB,
     registerDB,
     logOutDB,
-    loginCheckDB
+    loginCheckDB,
+
+    loadUserDB,
+    editUserDB,
+    withdrawDB,
+
 };
 
 export { actionCreators };

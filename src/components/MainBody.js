@@ -61,7 +61,7 @@ const MainBody = (props) => {
                 return (
                 <MainCard key={idx} {...p}/>
                 )
-              })};
+              })}
             </div>
           </main>
         </CardBox>
@@ -71,7 +71,7 @@ const MainBody = (props) => {
 };
 
 const Container = styled.div`
-  max-width: 90%;
+  max-width: 92%;
   width: 1728px;
   margin-left: auto;
   margin-right: auto;

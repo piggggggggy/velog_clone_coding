@@ -11,6 +11,7 @@ import LoginModal from "../components/LoginModal";
 const SharedHeader = (props) => {
     
     const memberId = localStorage.getItem('memberId');
+    const profileImg = localStorage.getItem('profileImg');
 
     const dispatch = useDispatch();
     const is_login = useSelector((state) => state.user.is_login);
@@ -69,7 +70,7 @@ const SharedHeader = (props) => {
                         <button onClick={()=>{history.push('/write')}}>새 글 작성</button>
                         <div>
                             <div onClick={onoffTab}>
-                                <img src="https://media.vlpt.us/images/pyt4105/profile/0d998bb2-e2ce-430a-8434-c28369fc5009/%ED%83%80%EC%9D%B8%EC%9D%98%EC%82%B6.png?w=120"/>
+                                <img src={profileImg !== null? profileImg : "https://media.vlpt.us/images/pyt4105/profile/0d998bb2-e2ce-430a-8434-c28369fc5009/%ED%83%80%EC%9D%B8%EC%9D%98%EC%82%B6.png?w=120"}/>
                                 <svg stroke="currentColor" fill="currentColor" strokeWidth="0" height="0 0 24 24" height="1em" width="1em" xmlns="https://www.w3.org/2000/svg">
                                     <path d="M7 10l5 5 5-5z"></path>
                                 </svg>

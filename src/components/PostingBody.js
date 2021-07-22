@@ -12,9 +12,9 @@ const PostingBody = (props) => {
     const post_list = useSelector((state) => state.post.list);
     const tag_list = useSelector((state) => state.post.tags);
     const user_info = useSelector((state) => state.post.user);
+    
 
     React.useEffect(() => {
-        console.log(memberId);
         // if (post_list.length !== 0) {
         //     dispatch(postActions.setPostDB(memberId));
         // }
@@ -26,6 +26,7 @@ const PostingBody = (props) => {
             <div>기다려....</div>
         )
     }
+    console.log(post_list);
 
     // let _post_list = post_list;
 

@@ -2,12 +2,11 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { useDispatch, useSelector } from "react-redux";
-import moment from "moment";
 
 const DetailBody = (props) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const post = useSelector((state) => state.post.post);
-  const postId = useSelector((state) => state.post.postId);
+  const user = useSelector((state) => state.post.user);
   // useEffect(() => {
   //   dispatch(postActions.detailPostDB(postId));
   // }, []);
@@ -15,27 +14,39 @@ const DetailBody = (props) => {
     return <div>loading</div>;
   }
 
+  // const date = props.createdAt.split('-');
+  // const day = date[2].split('T');
+  // const _date = () => {
+  //   return(
+  //     date[0] + "년 " + date[1] + "월 " + day[0] + "일"
+  //   )
+  // }
+
   return (
     <React.Fragment>
       <HeaderContainer>
         <div>
-          <h1></h1>
+          <h1>{post.title}</h1>
           <BtnBox>
             <button>수정</button>
             <button style={{marginLeft: "0.5rem"}}>삭제</button>
           </BtnBox>
           <UserNDate>
             <div>
-              <span style={{color: "#343a40", fontWeight: "bold"}}>닉네임</span>
+              <span style={{color: "#343a40", fontWeight: "bold"}}>{user.nickName}</span>
               <span style={{marginLeft:"0.5rem", marginRight:"0.5rem"}}>·</span>
-              <span>날짜</span>
+              <span>{props.createdAt}</span>
             </div>  
           </UserNDate>
           <TagBar>
-              <Tag>태그이름</Tag>
+              {post.tagResponseDtoList.map((t, idx) => {
+                return (
+                  <Tag key={idx}>{t.tagName}</Tag>
+                )
+              })}
           </TagBar>
           <div style={{position: "relative", marginTop: "2rem"}}></div>
-          <Ssumnale src="https://media.vlpt.us/images/pyt4105/post/28f37ae3-082c-4b82-aace-a8f6859f6dd3/알고.png"/>
+          <Ssumnale src={post.imgUrl? post.imgUrl : "https://media.vlpt.us/images/pyt4105/post/28f37ae3-082c-4b82-aace-a8f6859f6dd3/알고.png"}/>
         </div>
       </HeaderContainer>
       <BodyContainer>

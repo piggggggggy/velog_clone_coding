@@ -318,7 +318,7 @@ const Login = styled.div`
                 border-right: none;
             }
 
-            & > button {
+            & > a {
                 background: #12b886;
                 color: white;
                 font-size: 1rem;
@@ -330,6 +330,9 @@ const Login = styled.div`
                 width: 6rem;
                 word-break: keep-all;
                 cursor: pointer;
+                text-align: center;
+                padding-top: 11px;
+                padding-bottom: 11px;  
             }
         }
     }

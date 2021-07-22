@@ -21,7 +21,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
+    <div className="App" style={{background: "#f8f9fa"}}>
       <GlobalStyles />
       <Route path="/" exact component={Main} />
       <Route path="/posting/:memberId" exact component={Posting} />

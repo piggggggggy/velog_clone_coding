@@ -1,21 +1,42 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as commentAcitons } from "../redux/modules/comment";
-import moment from "moment";
+import { actionCreators as commentAcitons } from "../redux/modules/post";
 
 const Comment = (props) => {
-  const memberId = localStorage.getItem('memberId');
+  const dispatch = useDispatch();
+  
+  if(!props.commentUserResponseDto) {
+    return (
+      <div>기다려...</div>
+    )
+  }
+  // console.log(props);
 
+
+  // return null;  
+  const memberId = localStorage.getItem('memberId');
+  
+  const is_me = memberId == props.commentUserResponseDto.memberId;
+  console.log(is_me);
+  const commentId = props.commentId;
   // const dispatch = useDispatch();
   // useEffect(() => {
   //   dispatch(commentAcitons.setCommentDB(postId));
   // }, []);
 
-  // const deleteComment = () => {
-  //   dispatch(commentAcitons.deleteCmtDB(commentId));
-  // };
+  const deleteComment = () => {
+    dispatch(commentAcitons.deleteCmtDB(commentId));
+  };
 
+
+  const date = props.createdAt.split('-');
+  const day = date[2].split('T');
+  const _date = () => {
+    return(
+      date[0] + "년 " + date[1] + "월 " + day[0] + "일"
+    )
+  }
   // const editComment = () => {
   //   dispatch(commentAcitons.editCmtDB(commentId, comment));
   // };
@@ -26,20 +47,21 @@ const Comment = (props) => {
           <UserInfo>
 
             <a>
-              <img src="https://media.vlpt.us/images/jjunyjjuny/profile/c154920b-b1a4-45e8-9eb1-f0fafb75957c/social.png?w=120"></img>
+              <img src={props.commentUserResponseDto.profileImg ? props.commentUserResponseDto.profileImg : "https://media.vlpt.us/images/jjunyjjuny/profile/c154920b-b1a4-45e8-9eb1-f0fafb75957c/social.png?w=120"}></img>
             </a>
             <div>
               <UserName>
-                <a>{props.nickName}</a>
+                <a>{props.commentUserResponseDto.nickName}</a>
               </UserName>
-              <Date>일 전</Date>
+              <Date>{_date()}</Date>
             </div>
 
           </UserInfo>
+          {is_me?
           <BtnBox>
             <span>수정</span>
-            <span style={{marginLeft: "0.5rem"}}>삭제</span>
-          </BtnBox>
+            <span onClick={deleteComment} style={{marginLeft: "0.5rem"}}>삭제</span>
+          </BtnBox> : null}
         </CommentHeader>
         <CommentBody>
           <div>
@@ -57,12 +79,12 @@ const Comment = (props) => {
   );
 };
 
-Comment.defaultProps = {
-  memberId: 1,
-  nickName: "가짜",
-  createdAt: "2021-07-22",
-  content: "할수있다................할수있다....................할수있다............."
-};
+// Comment.defaultProps = {
+//   memberId: 1,
+//   nickName: "가짜",
+//   createdAt: "2021-07-22",
+//   content: "할수있다................할수있다....................할수있다............."
+// };
 
 const CommentsContainer = styled.div`
   padding-top: 1.5rem;

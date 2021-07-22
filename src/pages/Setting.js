@@ -2,14 +2,29 @@ import React from "react";
 import styled from "styled-components";
 import SharedHeader from "../shared/SharedHeader";
 import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const Setting = (props) => {
+    const memberId = props.match.params.memberId;
+    const dispatch = useDispatch();
     const user = useSelector((state) => state.user.user);
-    // const email = localStorage.getItem('email');
-    // const nickName = localStorage.getItem('nickName');
-    // const comment = localStorage.getItem('comment');
-    // const velogName = localStorage.getItem('velogName');
-    // const profileImg = localStorage.getItem('velogName');
+
+    React.useEffect(() => {
+        dispatch(userActions.loadUserDB())
+
+    },[])
+
+    if (!user) {
+        return (
+            <div>기다려...</div>
+        )
+    };
+
+    const withdraw = () => {
+        dispatch(userActions.withdrawDB());
+    };
+
+
 
     return (
         <React.Fragment>
@@ -98,7 +113,7 @@ const Setting = (props) => {
                                 <h3>이메일 주소</h3>
                             </div>
                             <ContentBlock>
-                                <Content>pyt4105@gmail.com</Content>
+                                <Content>{user.email}</Content>
                             </ContentBlock>
                         </div>
                         <Explain>회원 인증 또는 시스템에서 발송하는 이메일을 수신하는 주소입니다.</Explain>
@@ -134,7 +149,7 @@ const Setting = (props) => {
                             </div>
                             <ContentBlock>
                                 <Content>
-                                    <ElButton style={{ backgroundColor:"#ff6b6b", color: "white"}}>회원 탈퇴</ElButton>
+                                    <ElButton onClick={withdraw} style={{ backgroundColor:"#ff6b6b", color: "white"}}>회원 탈퇴</ElButton>
                                 </Content>
                             </ContentBlock>
                         </div>

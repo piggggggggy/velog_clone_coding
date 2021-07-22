@@ -7,7 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
 
 const Write = (props) => {
-  const memberId = useSelector((state) => state.user.user.memberId);
+  // const memberId = useSelector((state) => state.user.user.memberId);
+  const memberId = localStorage.getItem('memberId');
   const pId = props.match.params.pId;
   const dispatch = useDispatch();
   const { history } = props;
@@ -21,12 +22,18 @@ const Write = (props) => {
 
   const [postIntro, setIntro] = useState();
 
+  const [imgUrl, setImg] = useState();
+
   const changeTitle = (e) => {
     setTitle(e.target.value);
   };
 
   const changeTag = (e) => {
     setTag(e.target.value);
+  };
+
+  const changeImg = (e) => {
+    setImg(e.target.value);
   };
 
   const onCreate = (e) => {
@@ -63,17 +70,18 @@ const Write = (props) => {
     const post = {
       title: title,
       content: contentsHtml,
-      memberId: 1,
+      memberId: memberId,
       likeCount: 0,
       contentMd: contentsMd,
       previewText: postIntro,
-      originalFileName: "asdf",
-      tagList: { stringTagName: [tag] },
+      originalFileName: imgUrl,
+      tagList: { stringTagName: taglist },
     };
 
     
     console.log(post);
     dispatch(postActions.addPostDB(post));
+    // history.push(`/posting/${memberId}`);
   };
 
   return (
@@ -108,7 +116,7 @@ const Write = (props) => {
                         :
                         <ImgUrl>
                           <div>
-                            <input placeholder="이미지 URL을 입력해주세요!"></input>
+                            <input onChange={changeImg} placeholder="이미지 URL을 입력해주세요!"></input>
                           </div>
                         </ImgUrl> }
 
