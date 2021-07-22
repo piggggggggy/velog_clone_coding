@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentAcitons } from "../redux/modules/comment";
 import moment from "moment";
+
 const Comment = (props) => {
 
  
