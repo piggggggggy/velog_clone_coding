@@ -11,7 +11,11 @@ const DETAIL_POST = "post/DETIL_POST";
 
 // action creators
 
-const setPost = createAction(SET_POST, (post_list, tag_list, member_info) => ({ post_list, tag_list, member_info }));
+const setPost = createAction(SET_POST, (post_list, tag_list, member_info) => ({
+  post_list,
+  tag_list,
+  member_info,
+}));
 const addPost = createAction(ADD_POST, (post) => ({ post }));
 const editPost = createAction(EDIT_POST, (postId, post) => ({ postId, post }));
 const deletePost = createAction(DELETE_POST, (postId) => ({ postId }));
@@ -51,7 +55,7 @@ const addPostDB =
         contentMd: post.contentMd,
         previewText: post.previewText,
         originalFileName: post.originalFileName,
-        tagList: post.tagList
+        tagList: post.tagList,
       })
       .then((res) => {
         console.log(res);
@@ -65,21 +69,19 @@ const addPostDB =
       });
   };
 
+// 전체 게시물 조회
 
-
-  // 전체 게시물 조회
-
-const setPostDB = (memberId) => 
+const setPostDB =
+  (memberId) =>
   async (dispatch, getState, { history }) => {
     await api
       .get(`/api/posting/${memberId}`)
       .then((res) => {
-        console.log(res)
+        console.log(res);
         //   수정 필요함
         let post_list = res.data.postingResponseDto;
         let tag_list = res.data.tagList;
         let member_info = res.data.memberResponseDto;
-
 
         dispatch(setPost(post_list, tag_list, member_info));
         //   수정 필요함
@@ -91,7 +93,8 @@ const setPostDB = (memberId) =>
   };
 
 // 게시물 삭제
-const deletePostDB = (postId) =>
+const deletePostDB =
+  (postId) =>
   async (dispatch, getState, { history }) => {
     await api
       .delete(`/api/posting/${postId}`)
@@ -108,14 +111,18 @@ const deletePostDB = (postId) =>
   };
 
 // 게시물 수정
-const editPostDB = (postId = null, edit = {}) =>
+const editPostDB =
+  (postId = null, edit = {}) =>
   async (dispatch, getState, { history }) => {
     await api
       .put(`/api/posting/${postId}`, {
         title: edit.title,
-        content: edit.content,
-        tag: edit.tag,
-        renameFileName: edit.renameFileName,
+        content: edit.contentsHtml,
+        memberId: edit.memberId,
+        contentMd: edit.contentsMd,
+        previewText: edit.postIntro,
+        originalFileName: edit.originalFileName,
+        tags: edit.tags,
       })
       .then((res) => {
         console.log(res);
@@ -130,7 +137,8 @@ const editPostDB = (postId = null, edit = {}) =>
   };
 
 // 상세 게시물 조회
-const detailPostDB = (postId = "") =>
+const detailPostDB =
+  (postId = "") =>
   async (dispatch, getState, { history }) => {
     await api.get(`/api/posting/detail/${postId}`).then((res) => {
       console.log(res);

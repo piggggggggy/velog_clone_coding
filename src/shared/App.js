@@ -11,13 +11,14 @@ import PostingModal from "../pages/PostingModal";
 import Search from "../pages/Search";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import Edit from "../pages/Edit";
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(userActions.loginCheckDB());
-  },[]);
+  }, []);
 
   return (
     <div className="App">
@@ -31,6 +32,7 @@ const App = () => {
       <Route path="/setting/:memberId" exact component={Setting} />
       <Route path="/postingmodal" exact component={PostingModal} />
       <Route path="/search" exact component={Search} />
+      <Route path="/edit" exact component={Edit} />
     </div>
   );
 };
