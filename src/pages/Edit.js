@@ -12,7 +12,7 @@ const Edit = (props) => {
   const postId = props.match.params.postId;
   const { history } = props;
 
-  const post = useSelector((state) => state.post.post);
+  const eidt = useSelector((state) => state.post.post);
   
   React.useEffect(() => {
     if(postId) {
@@ -63,7 +63,7 @@ const Edit = (props) => {
     const contentsHtml = editorRef.current.getInstance().getHTML();
     const contentsMd = editorRef.current.getInstance().getMarkdown();
 
-    const post = {
+    const edit = {
       title: title,
       content: contentsHtml,
       memberId: memberId,
@@ -74,8 +74,8 @@ const Edit = (props) => {
       tags: { tagname: taglist },
     };
 
-    console.log(post);
-    dispatch(postActions.addPostDB(post));
+    console.log(edit);
+    dispatch(postActions.editPostDB(edit));
   };
 
   return (

@@ -7,25 +7,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
 
 const Write = (props) => {
+  const memberId = useSelector((state) => state.user.user.memberId);
+  const pId = props.match.params.pId;
   const dispatch = useDispatch();
-  const memberId = localStorage.getItem('memberId');
-  // const postId = props.match.params.postId;
   const { history } = props;
-
-  // const post = useSelector((state) => state.post.post);
-  
-  // React.useEffect(() => {
-  //   if(postId) {
-  //     dispatch(postActions.detailPostDB(postId));
-  //   }
-  // });
-
-
-
   const editorRef = useRef();
+
   const [title, setTitle] = useState();
+  // const [contentsMd, setMd] = useState();
   const [tag, setTag] = useState();
+
   const [taglist, setTagList] = useState([]);
+
   const [postIntro, setIntro] = useState();
 
   const changeTitle = (e) => {
@@ -70,14 +63,15 @@ const Write = (props) => {
     const post = {
       title: title,
       content: contentsHtml,
-      memberId: memberId,
+      memberId: 1,
       likeCount: 0,
       contentMd: contentsMd,
       previewText: postIntro,
-      originalFileName: '',
-      tagList: { stringTagName: taglist },
+      originalFileName: "asdf",
+      tags: { tagname: [tag] },
     };
 
+    
     console.log(post);
     dispatch(postActions.addPostDB(post));
   };
@@ -161,7 +155,7 @@ const Write = (props) => {
           </div>
         </ModalContainer>
       ) : null}
-      {/* ------------------------------------------------------------------------------------------ */}
+      {/* ------------------------------------------------------------------- */}
 
       <PostContainer>
         <WriteHeadrContainer>
