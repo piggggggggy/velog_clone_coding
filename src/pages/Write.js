@@ -16,8 +16,9 @@ const Write = (props) => {
   const [title, setTitle] = useState();
   // const [contentsMd, setMd] = useState();
   const [tag, setTag] = useState();
-  const TagList = [];
-  console.log(TagList);
+
+  const [taglist, setTagList] = useState([]);
+
   const [postIntro, setIntro] = useState();
 
   const changeTitle = (e) => {
@@ -27,6 +28,12 @@ const Write = (props) => {
   const changeTag = (e) => {
     setTag(e.target.value);
   };
+
+  const onCreate = (e) => {
+    setTagList((taglist) => [...taglist, tag]);
+    setTag("");
+  };
+  console.log(taglist);
 
   const changeIntro = (e) => {
     setIntro(e.target.value);
@@ -216,6 +223,7 @@ const Write = (props) => {
                   newTag.appendChild(newTagName);
                   document.querySelector(TagContainer).prepend(newTag);
                   document.querySelector(Input).value = "";
+                  onCreate();
                 }
               }}
               placeholder="태그를 입력하세요"
