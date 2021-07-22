@@ -5,6 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 
 const Setting = (props) => {
     const user = useSelector((state) => state.user.user);
+    // const email = localStorage.getItem('email');
+    // const nickName = localStorage.getItem('nickName');
+    // const comment = localStorage.getItem('comment');
+    // const velogName = localStorage.getItem('velogName');
+    // const profileImg = localStorage.getItem('velogName');
 
     return (
         <React.Fragment>
@@ -201,6 +206,9 @@ const InfoArea = styled.div`
 `;
 
 const EditButton = styled.button`
+    position: relative;
+    top: 90%;
+
     outline: none;
     padding: 0px;
     border: none;

@@ -59,7 +59,7 @@ const SharedHeader = (props) => {
                     </MainLogo>
                     }
                     <ContentBox>
-                        <a>
+                        <a onClick={()=>{history.push('/search')}}>
                             <svg width="17" height="17" viewBox="0 0 17 17">
                                 <path fillRule="evenodd" d="M13.66 7.36a6.3 6.3 0 1 1-12.598 0 6.3 6.3 0 0 1 12.598 0zm-1.73 5.772a7.36 7.36 0 1 1 1.201-1.201l3.636 3.635c.31.31.31.815 0 1.126l-.075.075a.796.796 0 0 1-1.126 0l-3.636-3.635z" clipRule="evenodd"></path>
                             </svg>
@@ -68,9 +68,9 @@ const SharedHeader = (props) => {
                         <>
                         <button onClick={()=>{history.push('/write')}}>새 글 작성</button>
                         <div>
-                            <div>
+                            <div onClick={onoffTab}>
                                 <img src="https://media.vlpt.us/images/pyt4105/profile/0d998bb2-e2ce-430a-8434-c28369fc5009/%ED%83%80%EC%9D%B8%EC%9D%98%EC%82%B6.png?w=120"/>
-                                <svg onClick={onoffTab} stroke="currentColor" fill="currentColor" strokeWidth="0" height="0 0 24 24" height="1em" width="1em" xmlns="https://www.w3.org/2000/svg">
+                                <svg stroke="currentColor" fill="currentColor" strokeWidth="0" height="0 0 24 24" height="1em" width="1em" xmlns="https://www.w3.org/2000/svg">
                                     <path d="M7 10l5 5 5-5z"></path>
                                 </svg>
                             </div>

@@ -70,8 +70,8 @@ const MainCard = (props) => {
         <a>
           <img src="https://media.vlpt.us/images/dongyi/profile/1d42f7e3-42c3-4b65-8c64-e6169c437565/cm-fb-profile.png?w=120"></img>
           <span>
-            by 
-            <b>진태</b>
+            by  
+            <b> 진태</b>
           </span>
         </a>
         <div>
@@ -220,6 +220,7 @@ const CardFooter = styled.div`
         color: #343a40;
         font-size: 0.75rem;
         line-height: 1.5;
+        font-weight: bold;
       }
     }
   }

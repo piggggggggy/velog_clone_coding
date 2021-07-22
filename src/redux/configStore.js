@@ -6,10 +6,12 @@ import { connectRouter } from "connected-react-router";
 import User from "./modules/user";
 import Post from "./modules/post";
 import Comment from "./modules/comment";
+import AllPost from "./modules/allPost";
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
+  allPost: AllPost,
   user: User,
   post: Post,
   comment: Comment,

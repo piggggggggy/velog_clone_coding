@@ -11,10 +11,12 @@ const PostingBody = (props) => {
     const memberId = props.memberId;
     const post_list = useSelector((state) => state.post.list);
 
-    React.useEffect = () => {
+    React.useEffect(() => {
         console.log(memberId);
-        dispatch(postActions.setPostDB(memberId));
-    };
+        if (post_list.length !== 0) {
+            dispatch(postActions.setPostDB(memberId));
+        }
+    },[]);
 
 
 

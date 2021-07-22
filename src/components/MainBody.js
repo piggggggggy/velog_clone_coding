@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+
 import MainCard from "./MainCard";
 
 const MainBody = (props) => {
+  const all_list = useSelector((state) => state.allPost.list);
+
   return (
     <React.Fragment>
       <Container>
@@ -34,17 +38,11 @@ const MainBody = (props) => {
         <CardBox>
           <main>
             <div>
-              <MainCard/>
-              <MainCard/>
-              <MainCard/>
-              <MainCard/>
-              <MainCard/>
-              <MainCard/>
-              <MainCard/>
-              <MainCard/>
-              <MainCard/>
-              <MainCard/>
-              <MainCard/>
+              {all_list.map((p, idx) => {
+                return (
+                <MainCard key={idx} {...p}/>
+                )
+              })};
             </div>
           </main>
         </CardBox>

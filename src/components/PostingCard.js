@@ -1,22 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 import moment from "moment";
+import { history } from "../redux/configStore";
 
 const PostingCard = (props) => {
     const post = props.postingResponseDto;
 
     return (
         <React.Fragment>
-            <CardContainer>
+            <CardContainer onClick={()=>{history.push(`/posting/detail/${post.postId}`)}}>
                 <a>
                     <div>
-                        <img src={post.originalFileName}></img>
+                        <img></img>
                     </div>
                 </a>
                 <a>
-                    <h2>{post.title}</h2>
+                    <h2>title</h2>
                 </a>
-                <p>{post.previewText}</p>
+                <p>previewText</p>
                 <TagContent>
                     {/* {props.tags.tagname.map((t, idx) => {
                         return(
@@ -25,7 +26,7 @@ const PostingCard = (props) => {
                     })} */}
                 </TagContent>
                 <DateContent>
-                    <span>{post.createdAt}</span>
+                    <span>날짜</span>
                     <div>·</div>
                     <span>개의 댓글</span>
                 </DateContent>

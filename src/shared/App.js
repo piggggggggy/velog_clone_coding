@@ -8,6 +8,7 @@ import Signup from "../pages/Signup";
 import Write from "../pages/Write";
 import Setting from "../pages/Setting";
 import PostingModal from "../pages/PostingModal";
+import Search from "../pages/Search";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
@@ -29,6 +30,7 @@ const App = () => {
       <Route path="/write/:postId" exact component={Write} />
       <Route path="/setting/:memberId" exact component={Setting} />
       <Route path="/postingmodal" exact component={PostingModal} />
+      <Route path="/search" exact component={Search} />
     </div>
   );
 };
