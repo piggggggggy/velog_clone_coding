@@ -13,11 +13,10 @@ const MainBody = (props) => {
   const all_list = useSelector((state) => state.allPost.list);
 
   React.useEffect(() => {
-      // if (all_list.length !== 0 ) {
-      //     dispatch(recentActions.getRecentDB());
-      // }
-      dispatch(recentActions.getRecentDB());
-
+      if (all_list.length !== 0 ) {
+          dispatch(recentActions.getRecentDB());
+      }
+      // dispatch(recentActions.getRecentDB());
   },[])
 
   if (!all_list) {

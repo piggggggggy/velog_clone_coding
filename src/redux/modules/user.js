@@ -127,6 +127,7 @@ const loadUserDB = () =>
             .get('/api/member/setting')
             .then((res) => {
                 console.log(res);
+                
 
             }).catch((err) => {
                 console.log(err, "에러남")

@@ -260,7 +260,7 @@ export default handleActions(
 
       // comment
 
-      [ADD_CMT]: (state, action) =>
+    [ADD_CMT]: (state, action) =>
       produce(state, (draft) => {
         draft.comment.push(action.payload.cmt);
       }),

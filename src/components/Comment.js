@@ -6,20 +6,21 @@ import { actionCreators as commentAcitons } from "../redux/modules/post";
 const Comment = (props) => {
   const dispatch = useDispatch();
   
-  if(!props.commentUserResponseDto) {
-    return (
-      <div>기다려...</div>
-    )
-  }
-  // console.log(props);
+  // if(!props.commentUserResponseDto) {
+  //   return (
+  //     <div>기다려...</div>
+  //   )
+  // }
 
 
-  // return null;  
+
+
   const memberId = localStorage.getItem('memberId');
   
   const is_me = memberId == props.commentUserResponseDto.memberId;
   console.log(is_me);
   const commentId = props.commentId;
+  
   // const dispatch = useDispatch();
   // useEffect(() => {
   //   dispatch(commentAcitons.setCommentDB(postId));

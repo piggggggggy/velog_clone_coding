@@ -34,16 +34,14 @@ const CommentBody = (props) => {
 
   const registComment = (e) => {
     const cmt = {
-      // postId: parseInt(postId),
-      // status: true,
       content: comment,
       memberId: parseInt(memberId),
       status: true,
     };
-    console.log(cmt);
+
     dispatch(commentActions.addCommentDB(postId, cmt));
     history.replace(`/posting/detail/${postId}`);
-    console.log("ㅅㅂ")
+
   };
 
   return (

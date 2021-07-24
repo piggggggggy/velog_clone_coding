@@ -17,7 +17,7 @@ const PostingCard = (props) => {
             <CardContainer onClick={()=>{history.push(`/posting/detail/${props.postId}`)}}>
                 <a>
                     <div>
-                        <img src={props.imgUrl}/>
+                        <img src={`"${props.imgUrl}"`}/>
                     </div>
                 </a>
                 <a>

@@ -16,7 +16,7 @@ const MainCard = (props) => {
     <Card onClick={()=>{history.push(`/posting/detail/${props.postId}`)}}>
       <a>
         <div>
-          <img src={props.imgUrl}></img>
+          <img src={`"${props.imgUrl}"`}></img>
         </div>
       </a>
       <ContentPart>
@@ -72,6 +72,10 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   color: #212529;
+  &:hover {
+    transform: translateY(-12px);
+    box-shadow: rgb(0 0 0 / 20%) 0px 4px 16px 0px;
+  }
 
   & > a {
     display: block;

@@ -26,16 +26,6 @@ const PostingBody = (props) => {
             <div>기다려....</div>
         )
     }
-    console.log(post_list);
-
-    // let _post_list = post_list;
-
-    // const filter = (x) => {
-    //     const _post_list = post_list.filter((p, idx) => {
-    //         if(x === p.tags.)
-    //     })
-    // }
-    
 
 
     return (
@@ -83,9 +73,10 @@ const PostingBody = (props) => {
                                         </li>
 
                                         {tag_list? tag_list.map((t, idx) =>{
+                                            
                                             return (
                                                 <li key={idx}>
-                                                    <a href="/@pyt4105">{t.tagName}</a>
+                                                    <a>{t.tagName}</a>
                                                     <span>
                                                         {`(${t.count})`}
                                                     </span>

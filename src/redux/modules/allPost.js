@@ -65,7 +65,6 @@ const getSearchDB = (search) =>
     };
 
 // reducer
-
 export default handleActions(
     {
         [RECENT]: (state, action) =>

@@ -46,7 +46,7 @@ const DetailBody = (props) => {
               })}
           </TagBar>
           <div style={{position: "relative", marginTop: "2rem"}}></div>
-          <Ssumnale src={post.imgUrl? post.imgUrl : "https://media.vlpt.us/images/pyt4105/post/28f37ae3-082c-4b82-aace-a8f6859f6dd3/알고.png"}/>
+          <Ssumnale src={`"${post.imgUrl}"`}/>
         </div>
       </HeaderContainer>
       <BodyContainer>
