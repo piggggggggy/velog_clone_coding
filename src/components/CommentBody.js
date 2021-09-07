@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as commentActions } from "../redux/modules/post";
 import { history } from "../redux/configStore";
 
+// modules
+import { actionCreators as commentActions } from "../redux/modules/post";
+
+// components
 import Comment from "./Comment";
 
 const CommentBody = (props) => {
@@ -15,12 +18,6 @@ const CommentBody = (props) => {
   const dispatch = useDispatch();
 
   const [comment, setComment] = useState();
-
-  // React.useEffect(() => {
-  //   if(comment_list.length !== 0){
-  //     dispatch(commentActions.setCommentDB(postId));
-  //   }
-  // },[])
 
   if (!comment_list) {
     return (<div>기다려..</div>)
@@ -48,11 +45,6 @@ const CommentBody = (props) => {
     <React.Fragment>
 
         <ContentsContainer>
-          {/* <h4>{comments.length}개의 댓글</h4>
-          <CommentPostBox cols="30" rows="5" onChange={changeComment} />
-          <CommentButtonBox>
-            <button onClick={registComment}>댓글 작성</button>
-          </CommentButtonBox> */}
           <h4>{comment_list.length}개의 댓글</h4>
           <InputBox>
             <textarea onChange={changeComment} placeholder="댓글을 작성하세요"></textarea>
@@ -150,40 +142,4 @@ const CommentContainer = styled.div`
   }
 `;
 
-
-// const CommentPostBox = styled.textarea`
-//   width: 100%;
-//   resize: none;
-//   padding: 1rem 1rem 1.5rem;
-//   outline: none;
-//   border: 1px solid rgb(233, 236, 239);
-//   margin-bottom: 1.5rem;
-//   border-radius: 4px;
-//   min-height: 7rem;
-//   font-size: 1.5rem;
-//   line-height: 1.75;
-// `;
-
-// const CommentButtonBox = styled.div`
-//   display: flex;
-//   -webkit-box-pack: end;
-//   justify-content: flex-end;
-//   & > button {
-//     display: inline-flex;
-//     -webkit-box-align: center;
-//     align-items: center;
-//     -webkit-box-pack: center;
-//     justify-content: center;
-//     cursor: pointer;
-//     font-weight: bold;
-//     outline: none;
-//     border: none;
-//     background-color: rgb(18, 184, 134);
-//     color: white;
-//     border-radius: 4px;
-//     padding: 0px 2rem;
-//     height: 3rem;
-//     font-size: 1.5rem;
-//   }
-// `;
 export default CommentBody;

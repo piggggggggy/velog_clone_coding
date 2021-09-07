@@ -1,19 +1,13 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
+
+// modules
 import { actionCreators as commentAcitons } from "../redux/modules/post";
 
 const Comment = (props) => {
   const dispatch = useDispatch();
   
-  // if(!props.commentUserResponseDto) {
-  //   return (
-  //     <div>기다려...</div>
-  //   )
-  // }
-
-
-
 
   const memberId = localStorage.getItem('memberId');
   
@@ -21,11 +15,6 @@ const Comment = (props) => {
   console.log(is_me);
   const commentId = props.commentId;
   
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(commentAcitons.setCommentDB(postId));
-  // }, []);
-
   const deleteComment = () => {
     dispatch(commentAcitons.deleteCmtDB(commentId));
   };
@@ -38,9 +27,7 @@ const Comment = (props) => {
       date[0] + "년 " + date[1] + "월 " + day[0] + "일"
     )
   }
-  // const editComment = () => {
-  //   dispatch(commentAcitons.editCmtDB(commentId, comment));
-  // };
+
   return (
     <React.Fragment>
       <CommentsContainer>

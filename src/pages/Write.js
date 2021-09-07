@@ -1,13 +1,16 @@
 import React, { useRef, useState } from "react";
+import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+
+// modules
+import { actionCreators as postActions } from "../redux/modules/post";
+
+// toast UI editor
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "codemirror/lib/codemirror.css";
 import { Editor } from "@toast-ui/react-editor";
-import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as postActions } from "../redux/modules/post";
 
 const Write = (props) => {
-  // const memberId = useSelector((state) => state.user.user.memberId);
   const memberId = localStorage.getItem('memberId');
   const pId = props.match.params.pId;
   const dispatch = useDispatch();
@@ -15,7 +18,6 @@ const Write = (props) => {
   const editorRef = useRef();
 
   const [title, setTitle] = useState();
-  // const [contentsMd, setMd] = useState();
   const [tag, setTag] = useState();
 
   const [taglist, setTagList] = useState([]);
@@ -45,9 +47,6 @@ const Write = (props) => {
   const changeIntro = (e) => {
     setIntro(e.target.value);
   };
-
-  // const image = contentsHtml.split("=")[1]?.split('"')[1];
-  // const contentsMd = editorRef.current.getInstance().getMarkdown();
 
   // 모달 구현
   const [modal, setModal] = useState(false);
@@ -140,7 +139,6 @@ const Write = (props) => {
                         onChange={changeIntro}
                         placeholder="당신의 포스트를 짧게 소개해보세요."
                       ></textarea>
-                      {/* <div>{document.write(postIntro.length)}/150</div> */}
                     </TextPreview>
                   </div>
                 </section>
@@ -163,7 +161,6 @@ const Write = (props) => {
           </div>
         </ModalContainer>
       ) : null}
-      {/* ------------------------------------------------------------------- */}
 
       <PostContainer>
         <WriteHeadrContainer>
@@ -194,7 +191,6 @@ const Write = (props) => {
         </WriteHeadrContainer>
         <Editor
           ref={editorRef}
-          // onChange={changeMd}
           initialValue=""
           previewStyle="vertical"
           height="100vh"
@@ -243,23 +239,6 @@ const PostingButtonBox = styled.div`
   -webkit-box-align: center;
   align-items: center;
 `;
-
-// const TemporaryButton = styled.button`
-//   display: inline-flex;
-//   -webkit-box-align: center;
-//   align-items: center;
-//   -webkit-box-pack: center;
-//   justify-content: center;
-//   font-weight: bold;
-//   cursor: pointer;
-//   outline: none;
-//   border: none;
-//   background-color: rgb(233, 236, 239);
-//   border-radius: 4px;
-//   padding: 0.7rem;
-//   margin-right: 10px;
-//   color: rgb(73, 80, 87);
-// `;
 
 const PostingButton = styled.button`
   display: inline-flex;
@@ -314,17 +293,6 @@ const WriteHeadrContainer = styled.div`
     font-size: 1.8rem;
   }
 `;
-// const Title = styled.input`
-//   display: block;
-//   padding: 0px;
-//   width: 100%;
-//   height: 50px;
-//   line-height: 1.5;
-//   outline: none;
-//   border: none;
-//   font-weight: 900;
-//   font-size: 1.8rem;
-// `;
 
 const UnderLine = styled.div`
   margin-top: 0rem;
@@ -550,123 +518,6 @@ const RightBody = styled.div`
     }
   }
 `;
-
-// const OpenSetting = styled.div`
-//   display: flex;
-
-//   & > button {
-//     flex: 1 1 0%;
-//     height: 3rem;
-//     display: inline-flex;
-//     -webkit-box-align: center;
-//     align-items: center;
-//     -webkit-box-pack: start;
-//     justify-content: flex-start;
-//     font-weight: bold;
-//     background: white;
-//     font-size: 1.125rem;
-//     box-shadow: #0000000d 0px 0px 4px 0px;
-//     padding: 0px 0px 0px 1rem;
-//     border-radius: 4px;
-//     cursor: pointer;
-//     border: 1px solid #00000000;
-//     color: #868e96;
-
-//     & > svg {
-//       font-weight: bold;
-//       font-size: 1.125rem;
-//       cursor: pointer;
-//       color: #868e96;
-
-//       & > path {
-//         font-weight: bold;
-//         font-size: 1.125rem;
-//         cursor: pointer;
-//         color: #868e96;
-//       }
-//     }
-
-//     & > div {
-//       flex: 1 1 0%;
-//       display: flex;
-//       -webkit-box-pack: center;
-//       justify-content: center;
-//       -webkit-box-align: center;
-//       align-items: center;
-//       font-weight: bold;
-//       font-size: 1.125rem;
-//       cursor: pointer;
-//       color: #868e96;
-//     }
-//   }
-// `;
-
-// const UrlSetting = styled.div`
-//   color: #212529;
-
-//   & > div {
-//     display: flex;
-//     background: white;
-//     box-shadow: #00000008;
-//     padding: 0.5rem 0.875rem;
-//     line-height: 1.5;
-//     color: #212529;
-
-//     & > div {
-//       color: #868e96;
-//       line-height: 1.5;
-//     }
-
-//     & > input {
-//       font-size: 1rem;
-//       background: none;
-//       outline: none;
-//       flex: 1 1 0%;
-//       border: none;
-//       padding: 0px;
-//       line-height: 1.5;
-//       color: #343a40;
-//     }
-//   }
-// `;
-
-// const SeriesSetting = styled.div`
-//   color: #212529;
-
-//   & > button {
-//     background: white;
-//     height: 3rem;
-//     width: 100%;
-//     border-radius: 4px;
-//     box-shadow: #0000000d 0px 0px 4px 0px;
-//     border: none;
-//     outline: none;
-//     display: flex;
-//     -webkit-box-align: center;
-//     align-items: center;
-//     -webkit-box-pack: center;
-//     justify-self: center;
-//     color: #20c997;
-//     font-size: 1.125rem;
-//     font-weight: bold;
-//     cursor: pointer;
-
-//     & > svg {
-//       margin-right: 0.875rem;
-//       color: #20c997;
-//       font-size: 1.125rem;
-//       font-weight: bold;
-//       cursor: pointer;
-
-//       & > path {
-//         color: #20c997;
-//         font-size: 1.125rem;
-//         font-weight: bold;
-//         cursor: pointer;
-//       }
-//     }
-//   }
-// `;
 
 const RightFooter = styled.div`
   display: flex;

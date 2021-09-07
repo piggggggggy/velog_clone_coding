@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { useRef } from "react";
+
+// modules
 import { actionCreators as userActions } from "../redux/modules/user";
 
 const Signup = (props) => {
@@ -80,16 +81,6 @@ const Signup = (props) => {
                                 <WidthMaker></WidthMaker>
                             </div>    
                         </PartContent>
-
-                        {/* <PartContent>
-                            <label>한 줄 소개</label>
-                            <div>
-                                <InputContent>
-                                    <input placeholder="당신을 한 줄로 소개해보세요" size="30"/>
-                                </InputContent>
-                                <WidthMaker></WidthMaker>
-                            </div>    
-                        </PartContent> */}
 
                         <PartContent>
                             <label>비밀번호</label>

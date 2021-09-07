@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+// components
 import PostingCard from "./PostingCard";
 
 const SearchBody = () => {

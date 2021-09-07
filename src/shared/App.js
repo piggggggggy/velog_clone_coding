@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+// globalstyles
 import GlobalStyles from "./GlobalStyles";
+
+// components
 import Main from "../pages/Main";
 import Posting from "../pages/Posting";
 import Detail from "../pages/Detail";
@@ -9,9 +14,10 @@ import Write from "../pages/Write";
 import Setting from "../pages/Setting";
 import PostingModal from "../pages/PostingModal";
 import Search from "../pages/Search";
-import { useDispatch } from "react-redux";
-import { actionCreators as userActions } from "../redux/modules/user";
 import Edit from "../pages/Edit";
+
+// modules
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const App = () => {
   const dispatch = useDispatch();

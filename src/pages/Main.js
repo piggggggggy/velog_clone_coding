@@ -1,7 +1,6 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as recentActions } from "../redux/modules/allPost";
 
+// elements & components
 import MainBody from '../components/MainBody';
 import SharedHeader from "../shared/SharedHeader";
 

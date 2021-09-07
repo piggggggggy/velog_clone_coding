@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configStore";
-import { useRef } from "react";
 import { useDispatch } from "react-redux";
 
+// modules
 import { actionCreators as userActions } from "../redux/modules/user";
 
 const LoginModal = (props) => {

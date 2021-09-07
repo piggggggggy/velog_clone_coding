@@ -20,7 +20,6 @@ const WITHDRAW = "WITHDRAW"
 const setUser = createAction(SET_USER, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const logCheck = createAction(LOG_CHECK, (user) => ({ user }));
-// const getUser = createAction(GET_USER, (user) => ({ user }));
 const load_user = createAction(LOAD_USER, (user) => ({ user }));
 const eidit_user = createAction(EDIT_USER, (user) => ({ user }));
 const withdraw = createAction(WITHDRAW, (user) => ({ user }));
@@ -176,10 +175,6 @@ export default handleActions(
             draft.is_login = true;
         }),
 
-        // [GET_USER]: (state, action) =>
-        // produce(state, (draft) => {
-        //     draft.user = action.payload.user;
-        // }),
         [LOG_OUT]: (state, action) => 
         produce(state, (draft) => {
             deleteCookie('token');

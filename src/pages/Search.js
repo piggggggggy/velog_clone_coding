@@ -1,13 +1,16 @@
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
-import _ from "lodash";
 import { useDispatch } from "react-redux";
+
+// modules
 import { actionCreators as allPostActions } from "../redux/modules/allPost";
 
-
+// components
 import SharedHeader from "../shared/SharedHeader";
 import PostingCard from "../components/PostingCard";
 
+// lodash
+import _ from "lodash";
 
 const Search = (props) => {
     const dispatch = useDispatch();
@@ -40,8 +43,6 @@ const Search = (props) => {
                 <NumComment>
                     총<b> 10000개</b>의 포스트를 찾았습니다.
                 </NumComment>
-                
-                {/* <PostingCard/> */}
 
             </Container>
         </React.Fragment>

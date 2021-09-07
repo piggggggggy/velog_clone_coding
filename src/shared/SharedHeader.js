@@ -1,11 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { history } from "../redux/configStore";
-import { useDispatch } from "react-redux";
+
+// modules
 import { actionCreators as userActions } from "../redux/modules/user";
+
+// lodash
 import _ from "lodash";
 
+// components
 import LoginModal from "../components/LoginModal";
 
 const SharedHeader = (props) => {
@@ -15,7 +19,8 @@ const SharedHeader = (props) => {
 
     const dispatch = useDispatch();
     const is_login = useSelector((state) => state.user.is_login);
-    console.log(is_login);
+
+
     const [modal, setModal] = React.useState(false);
     const [userTab, setTab] = React.useState(false);
     const onModal = () => {
@@ -127,7 +132,6 @@ const HeaderContainer = styled.div`
     -webkit-box-pack: justify;
     justify-content: space-between;
 
-    /* width: 1728px; */
     margin-left: auto;
     margin-right: auto;
     color: #212529;
@@ -143,7 +147,6 @@ const LogoBox = styled.div`
     color: #343a40;
     font-size: 1.3125rem;
     text-decoration: none;
-    /* font-family: "Fira Mono", monospace; */
 `;
 
 const Logo = styled.a`
@@ -186,7 +189,6 @@ const UserLogo = styled.a`
     text-decoration: none;
     font-weight: bold;
     font-size: 1.3125rem;
-    /* font-family: "Fira Mono", monospace; */
 `;
 
 const ContentBox = styled.div`
@@ -304,7 +306,6 @@ const MainLogo = styled.div`
     color: #343a40;
     font-size: 1.3125rem;
     text-decoration: none;
-    /* font-family: "Fira Mono", monospace; */
 
     & > a {
         display: flex;
@@ -314,13 +315,11 @@ const MainLogo = styled.div`
         text-decoration: none;
         font-weight: bold;
         font-size: 1.3125rem;
-        /* font-family: "Fira Mono", monospace; */
 
         & > svg {
             color: inherit;
             font-weight: bold;
             font-size: 1.3125rem;
-            /* font-family: "Fira Mono", monospace; */
 
             & > path {
                 color: inherit;

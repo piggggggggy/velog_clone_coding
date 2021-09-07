@@ -4,6 +4,7 @@ import { history } from "../redux/configStore";
 
 const MainCard = (props) => {
 
+  
   const date = props.createdAt.split('-');
   const day = date[2].split('T');
   const _date = () => {
@@ -29,7 +30,6 @@ const MainCard = (props) => {
         <div>
           <span>{_date()}</span>
           <span style={{marginLeft: "0.25rem", marginRight: "0.25rem"}}>·</span>
-          {/* <span>개의 댓글</span> */}
         </div>
       </ContentPart>
       <CardFooter>
@@ -229,93 +229,4 @@ const CardFooter = styled.div`
   }
 `;
 
-
-// const CardWrap = styled.div`
-//   margin: 1%;
-//   width: 37rem;
-//   height: 100%;
-//   box-sizing: border-box;
-//   border-radius: 10px;
-//   background-color: white;
-//   & > img {
-//     width: 100%;
-//     height: 30%;
-//     border-top-right-radius: 15px;
-//     border-top-left-radius: 15px;
-//   }
-// `;
-// const CardInfo = styled.div`
-//   width: 100%;
-//   padding: 0%;
-// `;
-
-// const ContentsBox = styled.div`
-//   width: 100%;
-//   & > h4 {
-//     font-size: 25px;
-//     font-weight: 730;
-//     padding: 4%;
-//   }
-//   & > p {
-//     font-size: 20px;
-//     line-height: 30px;
-//     margin-bottom: 12%;
-//     padding: 0 4%;
-//   }
-// `;
-
-// const SubInfo = styled.div`
-//   font-size: 18px;
-//   padding: 4%;
-//   & > span {
-//     margin-right: 4px;
-//   }
-// `;
-
-// const UserInfoBox = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   border-top: 1px solid rgb(248, 249, 250);
-//   padding: 5%;
-//   -webkit-box-pack: justify;
-//   justify-content: space-between;
-
-//   & > div {
-//     & > img {
-//       width: 1.5rem;
-//       height: 1.5rem;
-//       border-radius: 50%;
-//       object-fit: cover;
-//       display: block;
-//     }
-//   }
-
-//   & > p {
-//     display: flex;
-//     flex-direction: row;
-//     padding-left: 10px;
-//     font-size: 18px;
-//     line-height: 1.5;
-//   }
-//   & > div {
-//     display: flex;
-//     flex-direction: row;
-//     padding-left: 10px;
-//     font-size: 18px;
-//     line-height: 1.5;
-
-//     /* UserInfoBox p태그 */
-//     & > p {
-//       padding-right: 6px;
-//     }
-//   }
-// `;
-
-// const LikeInfo = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   & > p {
-//     margin: 0 6px;
-//   }
-// `;
 export default MainCard;

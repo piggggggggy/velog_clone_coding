@@ -1,12 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
+
+// modules
 import { actionCreators as postActions } from "../redux/modules/post";
 
+// components
 import NameCard from "./NameCard";
 import PostingCard from "./PostingCard";
 
 const PostingBody = (props) => {
+    
     const dispatch = useDispatch();
     const memberId = props.memberId;
     const post_list = useSelector((state) => state.post.list);
@@ -15,9 +19,6 @@ const PostingBody = (props) => {
     
 
     React.useEffect(() => {
-        // if (post_list.length !== 0) {
-        //     dispatch(postActions.setPostDB(memberId));
-        // }
         dispatch(postActions.setPostDB(memberId));
     },[]);
 
@@ -88,51 +89,6 @@ const PostingBody = (props) => {
                                 </div>
                             </div>
                         </div>
-                        {/* <div>
-                            <a href="/@pyt4105">
-                                <span></span>
-                            </a>
-                            <a href="/@pyt4105?tag=TIL">
-                                <span></span>
-                            </a>
-                            <a href="/@pyt4105?tag=알고리즘">
-                                <span></span>
-                            </a>
-                            <a href="/@pyt4105?tag=코딩테스트">
-                                <span></span>
-                            </a>
-                            <a href="/@pyt4105?tag=프로그래머스">
-                                <span></span>
-                            </a>
-                            <a href="/@pyt4105?tag=python">
-                                <span></span>
-                            </a>
-                            <a href="/@pyt4105?tag=리액트">
-                                <span></span>
-                            </a>
-                            <a href="/@pyt4105?tag=항해99">
-                                <span></span>
-                            </a>
-                            <a href="/@pyt4105?tag=WIL">
-                                <span></span>
-                            </a>
-                            <a href="/@pyt4105?tag=백준">
-                                <span></span>
-                            </a>
-                            <a href="/@pyt4105?tag=잡지식과 용어모음">
-                                <span></span>
-                            </a>
-                            <a href="/@pyt4105?tag=JavaScript">
-                                <span></span>
-                            </a>
-                            <a href="/@pyt4105?tag=Flask">
-                                <span></span>
-                            </a>
-                            <a href="/@pyt4105?tag=git">
-                                <span></span>
-                            </a>
-
-                        </div> */}
                     </TagList>
                     <CardList>
                         <div>

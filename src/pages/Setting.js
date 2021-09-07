@@ -39,7 +39,6 @@ const Setting = (props) => {
                           </div>
                         </ImgUrl>
                         <ElButton style={{ backgroundColor: "#12b886", color: "white" }}>이미지 업로드</ElButton>
-                        {/* <ElButton style={{ backgroundColor: "white", color: "#12b886" }}>이미지 제거</ElButton> */}
                     </ImageArea>
                     <InfoArea>
                         <h2>{user.nickName}</h2>
@@ -56,9 +55,7 @@ const Setting = (props) => {
                             </div>
                             <ContentBlock>
                                 <Content>{user.velogName}.log</Content>
-                                {/* <EditWrapper>
-                                    <EditButton>수정</EditButton>
-                                </EditWrapper> */}
+        
                             </ContentBlock>
 
                         </div>
@@ -98,9 +95,6 @@ const Setting = (props) => {
                                         </SecondLi>
                                     </ElUl>
                                 </Content>
-                                {/* <EditWrapper>
-                                    <EditButton>수정</EditButton>
-                                </EditWrapper> */}
                             </ContentBlock>
 
                         </div>
@@ -118,30 +112,6 @@ const Setting = (props) => {
                         </div>
                         <Explain>회원 인증 또는 시스템에서 발송하는 이메일을 수신하는 주소입니다.</Explain>
                     </div>
-
-                    {/* <div style={{borderTop: "1px solid #e9ecef"}}>
-                        <div>
-                            <div>
-                                <h3>이메일 수신 설정</h3>
-                            </div>
-                            <ContentBlock>
-                                <Content>
-                                    <ElUl>
-                                        <FirstLi>
-                                            <span style={{ width:"14rem" }}>댓글 알림</span>
-                                            <Toggle><div></div></Toggle>
-                                        </FirstLi>
-                                        <SecondLi>
-                                            <span style={{ width:"14rem" }}>벨로그 업데이트 소식</span>
-                                            <Toggle><div></div></Toggle>
-                                        </SecondLi>
-
-                                    </ElUl>
-                                </Content>
-                            </ContentBlock>
-                        </div>
-                    </div> */}
-
                     <div style={{borderTop: "1px solid #e9ecef"}}>
                         <div>
                             <div>
@@ -289,13 +259,6 @@ const Content = styled.div`
     line-height: 1.5;
 `;
 
-const EditWrapper = styled.div`
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    margin-left: 1rem;
-`;
-
 const ElUl = styled.ul`
     list-style: none;
     padding: 0px;
@@ -380,36 +343,6 @@ const SecondLi = styled.li`
     }
 `;
 
-const Toggle = styled.div`
-    cursor: pointer;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    width: 2.875rem;
-    height: 1.5rem;
-    background: #e9ecef;
-    transition: all 0.125s ease-in 0s;
-    border-radius: 1.125rem;
-    padding: 0.124rem;
-    list-style: none;
-    font-size: 1rem;
-    color: #495057;
-    line-height: 1.5;
-
-    & > div {
-        transform: translate(0rem);
-        box-shadow: 2px 0 4px #0000000d;
-        width: 1.25rem;
-        height: 1.25rem;
-        border-radius: 0.625rem;
-        background: white;
-        cursor: pointer;
-        list-style: none;
-        font-size: 1rem;
-        color: #495057;
-        line-height: 1.5;
-    }
-`;
 
 const ImgUrl = styled.div`
   width: 10rem;

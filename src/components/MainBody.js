@@ -1,22 +1,22 @@
-import React from "react";
+import React,{useEffect} from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
+
+// modules
 import { actionCreators as recentActions } from "../redux/modules/allPost";
 
-
+// components
 import MainCard from "./MainCard";
 
 const MainBody = (props) => {
 
-
   const dispatch = useDispatch();
+
+  // 모든 posting 리스트
   const all_list = useSelector((state) => state.allPost.list);
 
-  React.useEffect(() => {
-      if (all_list.length !== 0 ) {
-          dispatch(recentActions.getRecentDB());
-      }
-      // dispatch(recentActions.getRecentDB());
+  useEffect(() => {
+    dispatch(recentActions.getRecentDB());
   },[])
 
   if (!all_list) {
@@ -198,106 +198,4 @@ const CardBox = styled.div`
   }
 `;
 
-
-
-
-// const NavBox = styled.div`
-//   margin-top: 1.5rem;
-//   /* width: 88%; */
-//   display: flex;
-//   -webkit-box-pack: justify;
-//   justify-content: space-between;
-//   -webkit-box-align: center;
-//   align-items: center;
-//   position: relative;
-//   /* margin: auto; */
-// `;
-
-// const CheckBox = styled.div`
-//   background: white;
-//   width: 8rem;
-//   height: 2.8rem;
-//   border-radius: 4px;
-//   display: flex;
-//   -webkit-box-align: center;
-//   align-items: center;
-//   -webkit-box-pack: justify;
-//   justify-content: space-between;
-//   padding-left: 0.5rem;
-//   padding-right: 0.5rem;
-//   font-weight: 600;
-//   color: rgb(73, 80, 87);
-//   box-shadow: rgb(0 0 0 / 5%) 0px 0px 4px;
-//   cursor: pointer;
-// `;
-
-// const UnderLine = styled.div`
-//   width: 40%;
-//   height: 3px;
-//   position: absolute;
-//   bottom: 0px;
-//   background-color: rgb(52, 58, 64);
-// `;
-
-// const Changing = styled.div`
-//   display: flex;
-//   -webkit-box-align: center;
-//   align-items: center;
-//   position: relative;
-//   /* box-sizing: inherit; */
-//   font-weight: 400;
-//   /* padding: 3px; */
-//   & > a {
-//     display: flex;
-//     -webkit-box-align: center;
-//     align-items: center;
-//     -webkit-obx-pack: center;
-//     justify-content: center;
-//     font-size: 35px;
-//     height: 3rem;
-//     color: rgb(134, 142, 150);
-//     text-decoration: none;
-//     padding: 20px;
-//     :active {
-//       color: black;
-//     }
-//   }
-// `;
-
-// const MoreBox = styled.div`
-//   margin-right: 10px;
-//   display: flex;
-//   -webkit-box-align: center;
-//   align-items: center;
-//   -webkit-box-pack: center;
-//   justify-content: center;
-//   & > a {
-//     margin-top: 10px;
-//     display: flex;
-//     -webkit-box-align: center;
-//     align-items: center;
-//     -webkit-obx-pack: center;
-//     justify-content: center;
-//     font-size: 35px;
-//     height: 3rem;
-//     color: rgb(134, 142, 150);
-//     text-decoration: none;
-//     cursor: pointer;
-//   }
-// `;
-
-// const MainContainer = styled.div`
-//   max-width: 100%;
-//   height: auto;
-//   background-color: rgb(248, 249, 250);
-//   display: block;
-// `;
-
-// const CardContainer = styled.div`
-//   width: 90%;
-//   height: 100%;
-//   display: flex;
-//   flex-wrap: wrap;
-//   margin: auto;
-// `;
 export default MainBody;

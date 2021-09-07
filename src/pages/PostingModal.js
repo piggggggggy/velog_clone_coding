@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+
+// modules
 import { actionCreators as postActions } from "../redux/modules/post";
-import { useDispatch, useSelector } from "react-redux";
 
 const PostingModal = (props) => {
   const dispatch = useDispatch();

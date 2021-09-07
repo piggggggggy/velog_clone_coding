@@ -32,9 +32,7 @@ const PostingCard = (props) => {
                     })}
                 </TagContent>
                 <DateContent>
-                    {/* <span>{props.createdAt.format("yyyy년 M일 d일")}</span> */}
                     <div>·</div>
-                    {/* <span>개의 댓글</span> */}
                 </DateContent>
             </CardContainer>
         </React.Fragment>
